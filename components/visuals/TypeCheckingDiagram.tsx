@@ -12,8 +12,8 @@ export default function TypeCheckingDiagram() {
           <rect x="50" y="50" width="400" height="400" rx="4" fill={isActive ? '#FAFAF9' : '#FAFAF9'} stroke={isActive ? '#5B8FA3' : '#E5E5E5'} strokeWidth={isActive ? 2 : 1} className="transition-all duration-500" />
           <text x="250" y="80" textAnchor="middle" fontSize="14" fill={isActive ? '#1A1A1A' : '#4A4A4A'} fontWeight="600" className="font-ui">Code</text>
           <text x="70" y="120" fontSize="12" fill="#4A4A4A" className="font-mono">let x: number = 42;</text>
-          <text x="70" y="150" fontSize="12" fill="#4A4A4A" className="font-mono">let y: string = "hello";</text>
-          <text x="70" y="180" fontSize="12" fill="#4A4A4A" className="font-mono">let z = x + y; // Error!</text>
+          <text x="70" y="150" fontSize="12" fill="#4A4A4A" className="font-mono">let y: string = &quot;hello&quot;;</text>
+          <text x="70" y="180" fontSize="12" fill="#4A4A4A" className="font-mono">let z = x + y; Error!</text>
         </svg>
       ),
     },

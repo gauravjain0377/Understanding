@@ -1,6 +1,7 @@
 'use client'
 
 import AnimatedDiagram, { type DiagramStep } from '../diagrams/AnimatedDiagram'
+import PrimaryVisual from '../diagrams/PrimaryVisual'
 
 export default function ScreenFlowDiagram() {
   const steps: DiagramStep[] = [

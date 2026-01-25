@@ -32,7 +32,7 @@ export default function OptimizationDiagram() {
           <text x="675" y="80" textAnchor="middle" fontSize="14" fill={isActive ? '#1A1A1A' : '#4A4A4A'} fontWeight="600" className="font-ui">Optimized</text>
           <text x="520" y="120" fontSize="11" fill="#4A4A4A" className="font-mono">let x = 4;</text>
           <text x="520" y="150" fontSize="11" fill="#4A4A4A" className="font-mono">let y = 0;</text>
-          <text x="520" y="180" fontSize="11" fill="#4A4A4A" className="font-mono">// Dead code removed</text>
+          <text x="520" y="180" fontSize="11" fill="#4A4A4A" className="font-mono">Dead code removed</text>
           <defs>
             <marker id="arrow-opt" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
               <polygon points="0 0, 10 5, 0 10" fill="#5B8FA3" />
