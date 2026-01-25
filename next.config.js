@@ -13,6 +13,8 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  // Optimize for Vercel deployment
+  swcMinify: true,
 }
 
 module.exports = withMDX(nextConfig)

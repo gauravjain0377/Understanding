@@ -5,10 +5,10 @@ export default function NotFound() {
     <main className="min-h-screen pt-16">
       <div className="max-w-reading mx-auto px-8 md:px-20 lg:px-32 py-20 md:py-32">
         <h1 className="text-4xl md:text-5xl font-reading font-normal mb-6">
-          Not Found
+          Page Not Found
         </h1>
         <p className="text-lg text-text-secondary font-reading leading-relaxed mb-8">
-          The concept you're looking for doesn't exist.
+          The page you are looking for could not be found.
         </p>
         <Link
           href="/concepts"

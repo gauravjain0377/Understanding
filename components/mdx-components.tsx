@@ -1,3 +1,5 @@
+'use client'
+
 import type { MDXComponents } from 'mdx/types'
 import InputFlowDiagram from './visuals/InputFlowDiagram'
 import StateLayersDiagram from './visuals/StateLayersDiagram'
@@ -40,7 +42,35 @@ import FramesDiagram from './visuals/FramesDiagram'
 import RegularExpressionsDiagram from './visuals/RegularExpressionsDiagram'
 import ColorModelsDiagram from './visuals/ColorModelsDiagram'
 
+/** Default MDX components for standard HTML elements. Required because we pass a custom
+ * components map to MDXRemote, which replaces (not merges) the runtime map. Without these,
+ * lookups for pre, code, ul, etc. return undefined → "Element type is invalid: got undefined".
+ * @see https://mdxjs.com/table-of-components/
+ */
+const defaultMdxComponents: MDXComponents = {
+  a: 'a',
+  blockquote: 'blockquote',
+  br: 'br',
+  code: 'code',
+  em: 'em',
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  hr: 'hr',
+  img: 'img',
+  li: 'li',
+  ol: 'ol',
+  p: 'p',
+  pre: 'pre',
+  strong: 'strong',
+  ul: 'ul',
+}
+
 export const mdxComponents: MDXComponents = {
+  ...defaultMdxComponents,
   h2: ({ children, ...props }) => (
     <h2 className="progressive-reveal-target" {...props}>{children}</h2>
   ),
