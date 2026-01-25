@@ -1,0 +1,58 @@
+---
+title: "Regular Expressions"
+description: "Patterns for matching text — how regex enables powerful text processing through pattern matching"
+category: "Miscellaneous"
+domain: "misc"
+related: []
+---
+
+Regular expressions (regex) are patterns that describe text. They enable powerful text matching, searching, and manipulation by describing what text should look like rather than specifying exact strings. Understanding regular expressions reveals how pattern matching works and why it's a fundamental tool for text processing.
+
+<PrimaryVisual title="Pattern Matching" caption="How regular expressions match text patterns" diagramId="regular-expressions">
+  <RegularExpressionsDiagram />
+</PrimaryVisual>
+
+A regular expression is a sequence of characters that defines a search pattern. It describes a set of strings that match the pattern, enabling you to find, validate, or extract text based on its structure rather than its exact content. For example, a regex can match all email addresses without listing every possible address.
+
+Understanding regular expressions reveals how pattern matching enables powerful text processing and why regex is essential for many programming tasks.
+
+## Basic Concepts
+
+Regular expressions use special characters to represent patterns:
+
+- **Literals**: Regular characters match themselves (`a` matches "a")
+- **Character classes**: `[a-z]` matches any lowercase letter
+- **Quantifiers**: `+` means "one or more", `*` means "zero or more"
+- **Anchors**: `^` matches start of string, `$` matches end
+- **Groups**: `()` capture parts of the match
+
+These elements combine to create complex patterns that can match sophisticated text structures.
+
+## Common Uses
+
+Regular expressions are used for:
+
+- **Validation**: Checking if text matches a format (email, phone number)
+- **Search**: Finding text that matches a pattern
+- **Extraction**: Capturing parts of text that match
+- **Replacement**: Replacing matched text with other text
+
+These operations are fundamental to text processing, making regex a powerful tool.
+
+## The Mental Model
+
+Think of regular expressions as a description language. Instead of saying "find 'user@example.com'", you say "find text that looks like an email address." The regex describes the pattern, and the matcher finds all text that fits the pattern.
+
+This mental model helps explain why regex is powerful. Just as describing a person ("tall, wearing red") is more flexible than naming them, describing text patterns is more flexible than specifying exact strings. This flexibility makes regex useful for many text processing tasks.
+
+## Why This Matters
+
+Understanding regular expressions changes how you think about text processing. You begin to see that text has structure, and that you can match and manipulate text based on that structure. You understand why regex is powerful and how to use it effectively.
+
+You also begin to appreciate that regex is a domain-specific language. It's not general-purpose programming — it's specialized for pattern matching. This specialization makes it powerful for its domain but requires learning its syntax and concepts.
+
+More fundamentally, understanding regular expressions reveals that pattern matching is a fundamental operation. Many programming tasks involve finding or validating patterns in text, and regex provides a powerful way to express and match these patterns.
+
+<ClosingInsight>
+Regular expressions reveal that pattern matching is a fundamental operation. By describing text patterns rather than exact strings, regex enables powerful text processing that would be difficult or impossible with simple string matching.
+</ClosingInsight>

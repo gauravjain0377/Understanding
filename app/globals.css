@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FBFBF9;
+    --text-primary: #1C1C1C;
+    --text-secondary: #5A5A5A;
+    --accent: #4A7C8F;
+    --border: #E8E8E6;
+    --subtle: #F5F5F3;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-text-primary;
+    font-family: var(--font-reading);
+    font-size: 21px; /* Premium base font size */
+    line-height: 1.85; /* More generous line height for calm reading */
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 23px; /* Even larger on desktop */
+      line-height: 1.9;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: 24px; /* Maximum readability on large screens */
+      line-height: 1.95;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-reading;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    font-weight: 400; /* Lighter for elegance */
+    letter-spacing: -0.03em;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3.25rem;
+      margin-top: 4rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 3.75rem;
+      letter-spacing: -0.035em;
+    }
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 2.25rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 1.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  p {
+    margin-bottom: 2.25rem; /* More generous spacing between paragraphs */
+    max-width: 62ch; /* Optimal reading width for comfort */
+    color: var(--text-primary);
+  }
+
+  @media (min-width: 768px) {
+    p {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  a {
+    @apply text-accent;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  a:hover {
+    opacity: 0.7;
+  }
+
+  code {
+    @apply font-ui;
+    font-size: 0.9em;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+
+  pre {
+    @apply font-ui;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 2rem 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+  }
+
+  /* Pull quotes for key insights */
+  blockquote {
+    @apply border-l-4 border-accent pl-8 my-10 italic;
+    font-size: 1.625rem;
+    line-height: 1.65;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  @media (min-width: 768px) {
+    blockquote {
+      font-size: 1.875rem;
+      padding-left: 2.5rem;
+      margin: 3.5rem 0;
+      line-height: 1.7;
+    }
+  }
+}
+
+@layer utilities {
+  .progressive-reveal-target {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .progressive-reveal-target.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .progressive-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .progressive-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(74, 124, 143, 0.18);
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Technical grid background */
+  .technical-grid {
+    background-image: 
+      radial-gradient(circle, rgba(74, 124, 143, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+  }
+  
+  .technical-grid-dense {
+    background-image: 
+      radial-gradient(circle, rgba(74, 124, 143, 0.08) 1px, transparent 1px);
+    background-size: 16px 16px;
+    background-position: 0 0;
+  }
+}

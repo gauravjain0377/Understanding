@@ -1,0 +1,61 @@
+---
+title: "Parsing"
+description: "How tokens become structure — building trees that represent the meaning of code"
+category: "Compilers & Interpreters"
+domain: "compilers-interpreters"
+related: ["lexing-tokenization", "abstract-syntax-trees"]
+---
+
+Tokens tell us what the code says, but not what it means. Parsing is the process of taking a stream of tokens and building a tree structure that represents the code's meaning — its syntax, its relationships, and its hierarchy. It's how compilers and interpreters understand the structure of programs.
+
+<PrimaryVisual title="From Tokens to Structure" caption="How tokens are organized into hierarchical tree structures" diagramId="parsing">
+  <ParsingDiagram />
+</PrimaryVisual>
+
+Parsing takes the flat stream of tokens produced by lexing and organizes them into a tree structure called a parse tree or abstract syntax tree (AST). This tree represents the grammatical structure of the code, showing how expressions nest, how statements relate, and how the code is organized hierarchically.
+
+Understanding parsing reveals how programming languages define structure through grammar, and how tools can analyze and transform code by manipulating these trees.
+
+## The Challenge
+
+Tokens are flat — they're just a sequence of symbols. But code has structure. An `if` statement contains a condition and a body. A function call contains a function name and arguments. An expression contains operators and operands arranged in a specific order.
+
+The challenge is determining this structure from the token stream. The parser must recognize patterns like "if keyword, followed by opening parenthesis, followed by expression, followed by closing parenthesis, followed by block" and organize these into a tree structure.
+
+## How Parsing Works
+
+Parsing works by applying grammar rules — formal descriptions of what valid code looks like. These rules define how tokens can be combined. For example, a grammar might say:
+
+- An `if` statement consists of the keyword `if`, followed by a condition in parentheses, followed by a statement block
+- An expression can be a number, a variable, or two expressions connected by an operator
+- A statement can be an assignment, an `if` statement, a return statement, etc.
+
+The parser uses these rules to build a tree. It starts with the tokens and applies rules recursively, building up larger structures from smaller ones. The result is a tree where each node represents a grammatical construct, and the children represent its components.
+
+## Parse Trees vs Abstract Syntax Trees
+
+There are two main types of trees that parsers produce:
+
+- **Parse trees** (concrete syntax trees): Include every detail from the source code, including punctuation and keywords. They're very close to the original syntax.
+
+- **Abstract syntax trees (ASTs)**: Simplify the parse tree by removing unnecessary details. They focus on the essential structure and meaning, making them easier to work with for analysis and transformation.
+
+Most modern tools use ASTs because they're cleaner and more useful for the tasks that come after parsing, like type checking, optimization, and code generation.
+
+## The Mental Model
+
+Think of parsing as diagramming a sentence. When you diagram "The cat sat on the mat," you don't just list the words. You show that "The cat" is the subject, "sat" is the verb, and "on the mat" is a prepositional phrase modifying the verb. Parsing does the same for code — it shows the grammatical relationships between tokens.
+
+This mental model helps explain why parsing is necessary. Just as you need to understand sentence structure to understand meaning, a compiler needs to understand code structure to understand what the code does.
+
+## Why This Matters
+
+Understanding parsing changes how you think about programming languages. You begin to see that languages are defined by grammars — formal rules that describe valid structure. You understand why some code is valid and other code isn't, and why syntax errors occur when code doesn't match the grammar.
+
+You also begin to appreciate the complexity that parsers handle. They must handle operator precedence (why `2 + 3 * 4` means `2 + (3 * 4)`), associativity (why `a - b - c` means `(a - b) - c`), and ambiguity (when multiple parses are possible).
+
+More fundamentally, understanding parsing reveals that code structure is hierarchical. Code isn't just a sequence of tokens — it's a tree of nested structures. This tree representation is what makes it possible to analyze, transform, and execute code.
+
+<ClosingInsight>
+Parsing reveals that code structure is hierarchical. The flat sequence of tokens becomes a tree of nested structures, and this tree representation is what makes code understandable to both humans and machines.
+</ClosingInsight>

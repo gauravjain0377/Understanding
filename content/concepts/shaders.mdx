@@ -1,0 +1,70 @@
+---
+title: "Shaders"
+description: "Programs that run on GPUs — how graphics are rendered through parallel computation"
+category: "3D & Graphics"
+domain: "3d-graphics"
+related: ["gpu-mental-model", "rasterization"]
+---
+
+Modern graphics are rendered using shaders — small programs that run on GPUs to compute the appearance of every pixel. Shaders are the foundation of real-time graphics, enabling everything from simple 2D rendering to complex 3D scenes with lighting, shadows, and effects. Understanding shaders reveals how GPUs render graphics through massive parallelism.
+
+<PrimaryVisual title="GPU Rendering Pipeline" caption="How vertex and fragment shaders work together to render graphics" diagramId="shaders">
+  <ShadersDiagram />
+</PrimaryVisual>
+
+Shaders are programs written in special languages (like GLSL or HLSL) that execute on the GPU. Unlike CPU programs that run sequentially, shaders run in parallel — thousands or millions of instances execute simultaneously, each processing a different vertex or pixel. This parallelism is what makes real-time graphics possible.
+
+Understanding shaders reveals how modern graphics work and why GPUs are essential for rendering.
+
+## Types of Shaders
+
+The graphics pipeline uses several types of shaders:
+
+- **Vertex shaders**: Process vertices (points in 3D space), transforming them and preparing them for rendering
+- **Fragment shaders** (pixel shaders): Process fragments (potential pixels), computing their final color
+- **Geometry shaders**: Generate additional geometry from existing vertices
+- **Compute shaders**: General-purpose parallel computation, not just for graphics
+
+Vertex and fragment shaders are the most common. Vertex shaders run first, processing each vertex. Fragment shaders run next, processing each pixel that might be visible.
+
+## The Pipeline
+
+The rendering pipeline follows a sequence:
+
+1. **Vertex shader**: Transforms vertices from 3D space to screen space
+2. **Rasterization**: Converts primitives (triangles) into fragments (potential pixels)
+3. **Fragment shader**: Computes the color of each fragment
+4. **Blending**: Combines fragments with what's already on screen
+
+Each stage runs in parallel, processing many vertices or fragments simultaneously. This parallelism is what makes GPUs fast — they can process millions of pixels per second.
+
+## Why Shaders Matter
+
+Shaders enable modern graphics features:
+
+- **Lighting**: Compute how light interacts with surfaces
+- **Textures**: Apply images to surfaces
+- **Effects**: Post-processing effects like blur, bloom, color grading
+- **Procedural generation**: Generate graphics algorithmically
+
+All of these are possible because shaders can compute the appearance of every pixel independently, in parallel.
+
+## The Mental Model
+
+Think of shaders as a factory assembly line. Each worker (shader instance) does the same job (process a vertex or pixel), but on different items. Thousands of workers work in parallel, each handling a different item. This parallelism is what makes the factory fast.
+
+GPUs work the same way. Each shader instance processes a different vertex or pixel, but they all run the same program. This parallelism is what makes GPUs fast — they can process millions of items simultaneously.
+
+This mental model helps explain why shaders are powerful. Just as a factory with many workers is faster than one worker, a GPU with many shader cores is faster than a CPU with few cores. The parallelism is the key.
+
+## Why This Matters
+
+Understanding shaders changes how you think about graphics. You begin to see that rendering is computation — every pixel's color is computed, not just looked up. You understand why GPUs are essential for graphics — they provide the parallelism needed for real-time rendering.
+
+You also begin to appreciate that shaders are programs. They're not magic — they're code that runs on specialized hardware. This means you can write shaders to create custom graphics effects, procedural generation, and more.
+
+More fundamentally, understanding shaders reveals that modern graphics are computational. Rendering isn't just drawing — it's computing the appearance of every pixel through parallel programs. This computational approach is what makes modern graphics possible.
+
+<ClosingInsight>
+Shaders reveal that modern graphics are computational. Every pixel's appearance is computed through parallel programs running on GPUs, making real-time rendering of complex scenes possible through massive parallelism.
+</ClosingInsight>

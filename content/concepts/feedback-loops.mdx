@@ -1,0 +1,69 @@
+---
+title: "Feedback Loops"
+description: "How systems respond to actions — why immediate, clear feedback is essential for usable interfaces"
+category: "Human–Computer Interaction"
+domain: "human-computer-interaction"
+related: ["cognitive-load", "perceived-performance"]
+---
+
+When users interact with software, they need to know what's happening. Feedback loops are the mechanism by which systems communicate the results of actions back to users. Good feedback is immediate, clear, and informative. Poor feedback — or no feedback — makes software feel unresponsive and confusing.
+
+<PrimaryVisual title="Action and Response" caption="How feedback loops connect user actions to system responses" diagramId="feedback-loops">
+  <FeedbackLoopsDiagram />
+</PrimaryVisual>
+
+A feedback loop consists of an action, a system response, and the user's interpretation of that response. The user acts, the system responds, and the user adjusts their understanding and future actions based on the response. This cycle continues as the user works toward their goal.
+
+Understanding feedback loops reveals why responsive interfaces feel natural and why unresponsive interfaces feel broken, even when they're technically working correctly.
+
+## The Cycle
+
+Feedback loops follow a pattern:
+
+1. **User acts**: The user performs an action (clicks, types, swipes)
+2. **System responds**: The system provides feedback about what happened
+3. **User interprets**: The user understands the feedback and adjusts their mental model
+4. **User acts again**: Based on the feedback, the user takes the next action
+
+This cycle repeats continuously. Each iteration refines the user's understanding and guides them toward their goal.
+
+## Types of Feedback
+
+Feedback can take many forms:
+
+- **Visual**: Changes in appearance, animations, highlights
+- **Haptic**: Vibration, force feedback
+- **Auditory**: Sounds, beeps, voice
+- **Temporal**: How long things take, progress indicators
+
+The best feedback uses multiple channels when appropriate. A button click might provide visual feedback (highlight), haptic feedback (vibration), and auditory feedback (click sound).
+
+## Timing Matters
+
+The timing of feedback is crucial:
+
+- **Immediate feedback** (0-100ms): Confirms the action was received (button press, cursor change)
+- **Fast feedback** (100-1000ms): Shows progress or results (form validation, search results)
+- **Delayed feedback** (1s+): Requires progress indicators (file uploads, complex operations)
+
+Delayed feedback without progress indicators creates uncertainty. Users don't know if the system is working or broken. Progress indicators bridge this gap, providing feedback even when the actual result isn't ready.
+
+## The Mental Model
+
+Think of feedback loops as conversation. In a good conversation, when you speak, the other person responds. You adjust what you say based on their response, and the conversation flows naturally. In a bad conversation, responses are delayed or unclear, and you're left wondering if you were heard.
+
+Software works the same way. Good feedback makes interaction feel like a conversation — responsive, clear, natural. Poor feedback makes it feel like talking to a wall — you're not sure if anything is happening.
+
+This mental model helps explain why feedback is essential. Just as conversation requires responses, interaction requires feedback. Without it, users are operating blind, unsure if their actions are having any effect.
+
+## Why This Matters
+
+Understanding feedback loops changes how you think about interface design. You begin to see that every action needs a response, and that the quality of that response determines how the interface feels. You understand why loading states, progress indicators, and error messages are essential — they're all forms of feedback.
+
+You also begin to appreciate that feedback is about communication. The system is communicating with the user, telling them what's happening, what worked, what didn't, and what to do next. Good feedback is clear communication; poor feedback is confusing communication.
+
+More fundamentally, understanding feedback loops reveals that interaction is a collaborative process. Users and systems work together, with feedback as the communication channel. When that channel is clear and responsive, the collaboration feels natural. When it's broken or delayed, the collaboration breaks down.
+
+<ClosingInsight>
+Feedback loops reveal that interaction is a collaborative process between user and system. Clear, immediate feedback makes this collaboration feel natural, while poor feedback makes it feel broken, even when the system is technically working correctly.
+</ClosingInsight>

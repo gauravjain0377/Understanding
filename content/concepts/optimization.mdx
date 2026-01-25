@@ -1,0 +1,67 @@
+---
+title: "Code Optimization"
+description: "How compilers transform code to make it faster and more efficient — improving performance without changing behavior"
+category: "Compilers & Interpreters"
+domain: "compilers-interpreters"
+related: ["compilation-vs-interpretation", "abstract-syntax-trees"]
+---
+
+Compilers don't just translate code — they also optimize it. Optimization is the process of transforming code to make it faster, use less memory, or consume less energy, while preserving its behavior. It's how compilers turn readable code into efficient machine code.
+
+<PrimaryVisual title="Transforming Code for Performance" caption="How optimizers improve code efficiency while preserving behavior" diagramId="optimization">
+  <OptimizationDiagram />
+</PrimaryVisual>
+
+Optimization analyzes code and applies transformations that improve performance. These transformations include constant folding (evaluating expressions at compile time), dead code elimination (removing unreachable code), and loop optimization (improving loop performance). The optimizer must be careful to preserve the program's behavior — optimized code must produce the same results as the original.
+
+Understanding optimization reveals how compilers can improve performance automatically, and why writing "optimized" code manually is often unnecessary.
+
+## The Goal
+
+The goal of optimization is to improve code performance without changing its behavior. This means:
+- **Correctness**: Optimized code must produce the same results as the original
+- **Performance**: Optimized code should run faster, use less memory, or consume less energy
+- **Transparency**: The optimization should be automatic — developers shouldn't need to think about it
+
+This is a delicate balance. Aggressive optimization can introduce bugs if not done carefully, while conservative optimization might miss opportunities for improvement.
+
+## Common Optimizations
+
+Optimizers apply many transformations:
+
+- **Constant folding**: Evaluate constant expressions at compile time (`2 + 2` becomes `4`)
+- **Dead code elimination**: Remove code that can never execute (like code after `return` or in `if (false)`)
+- **Loop optimization**: Improve loop performance (unrolling, vectorization, hoisting)
+- **Inlining**: Replace function calls with the function body when beneficial
+- **Register allocation**: Assign variables to CPU registers for faster access
+- **Common subexpression elimination**: Reuse computed values instead of recomputing them
+
+These optimizations can significantly improve performance, often making optimized code many times faster than unoptimized code.
+
+## Optimization Levels
+
+Compilers typically offer different optimization levels:
+
+- **No optimization**: Fast compilation, slower execution
+- **Basic optimization**: Some improvements, balanced compilation time
+- **Aggressive optimization**: Maximum performance, slower compilation
+
+The choice depends on the use case. Development builds often use no optimization for faster iteration, while production builds use aggressive optimization for maximum performance.
+
+## The Mental Model
+
+Think of optimization as editing for efficiency. Just as an editor improves writing by removing redundancy and improving clarity, an optimizer improves code by removing inefficiency and improving performance. But just as an editor must preserve meaning, an optimizer must preserve behavior.
+
+This mental model helps explain why optimization is valuable. Just as good editing improves writing without changing meaning, good optimization improves code without changing behavior. And just as editing is automatic in modern word processors, optimization is automatic in modern compilers.
+
+## Why This Matters
+
+Understanding optimization changes how you think about writing code. You begin to see that writing "optimized" code manually is often unnecessary — the compiler will optimize it automatically. You understand that readability and correctness are more important than micro-optimizations, because the compiler handles performance.
+
+You also begin to appreciate the sophistication of modern compilers. They can apply complex optimizations that would be difficult or error-prone to do manually. This allows developers to write clear, readable code while still getting excellent performance.
+
+More fundamentally, understanding optimization reveals that performance and readability aren't always in conflict. You can write readable code and let the compiler optimize it, getting both clarity and performance.
+
+<ClosingInsight>
+Optimization reveals that performance and readability aren't in conflict. Modern compilers can automatically optimize readable code, allowing developers to focus on correctness and clarity while still achieving excellent performance.
+</ClosingInsight>

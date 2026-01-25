@@ -1,0 +1,70 @@
+---
+title: "Latency"
+description: "The delay between action and response — why time matters in software and how to think about it"
+category: "Time & Systems"
+domain: "time-systems"
+related: ["event-loops", "perceived-performance"]
+---
+
+Every operation in software takes time. Latency is the delay between initiating an operation and receiving a response. Understanding latency reveals why software feels fast or slow, and how different types of latency affect user experience differently.
+
+<PrimaryVisual title="Request and Response" caption="How latency affects the time between request and response" diagramId="latency">
+  <LatencyDiagram />
+</PrimaryVisual>
+
+Latency is the time it takes for an operation to complete. It includes network time (for remote operations), processing time (for computation), and I/O time (for disk or database access). Different types of latency have different impacts on user experience, and understanding these differences helps you optimize for what matters.
+
+Understanding latency reveals why some delays feel acceptable while others feel unacceptable, and how to design systems that feel responsive despite inherent delays.
+
+## Types of Latency
+
+Latency comes in several forms:
+
+- **Network latency**: Time for data to travel over networks (milliseconds to seconds)
+- **I/O latency**: Time for disk or database operations (milliseconds)
+- **Processing latency**: Time for computation (microseconds to seconds)
+- **Rendering latency**: Time to render graphics (milliseconds, affects frame rate)
+
+Each type has different characteristics. Network latency is variable and depends on distance. I/O latency depends on storage technology. Processing latency depends on computation complexity.
+
+## Perceived vs Actual
+
+Perceived latency often differs from actual latency:
+
+- **Immediate feedback** (0-100ms): Feels instant
+- **Fast feedback** (100-1000ms): Feels responsive with progress indicators
+- **Slow feedback** (1s+): Feels slow, requires progress indicators
+- **Very slow** (10s+): Feels broken without clear feedback
+
+The same actual latency can feel different depending on feedback. A 2-second operation with a progress bar feels faster than a 1-second operation with no feedback.
+
+## Why Latency Matters
+
+Latency affects user experience in several ways:
+
+- **Responsiveness**: Low latency makes software feel responsive
+- **Productivity**: High latency slows down work
+- **Perception**: Perceived latency matters more than actual latency
+- **Tolerance**: Users tolerate different latencies for different operations
+
+Understanding these effects helps you prioritize optimization efforts and design appropriate feedback.
+
+## The Mental Model
+
+Think of latency as distance. Just as physical distance affects how long it takes to get somewhere, latency affects how long operations take. Some distances are short (local operations), some are long (network operations). And just as you can travel faster on some routes, you can reduce latency through optimization.
+
+Software works the same way. Some operations are fast (local computation), some are slow (network requests). And just as you can optimize routes, you can optimize operations to reduce latency.
+
+This mental model helps explain why latency varies. Just as distance varies by route, latency varies by operation type. And just as you can't eliminate distance, you can't eliminate latency — but you can minimize it and provide feedback during waits.
+
+## Why This Matters
+
+Understanding latency changes how you think about performance. You begin to see that not all latency is equal — network latency feels different from processing latency, and perceived latency matters more than actual latency. You understand why feedback is essential and how to design for different latency scenarios.
+
+You also begin to appreciate that latency is a fundamental constraint. You can't make operations instant, but you can minimize latency and provide feedback. This constraint shapes how you design systems and user experiences.
+
+More fundamentally, understanding latency reveals that time is a dimension of software. Operations don't just succeed or fail — they take time. This temporal dimension affects everything from user experience to system design, and understanding it is essential for building good software.
+
+<ClosingInsight>
+Latency reveals that time is a dimension of software. Every operation takes time, and understanding how different types of latency affect user experience helps you design systems that feel responsive despite inherent delays.
+</ClosingInsight>

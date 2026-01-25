@@ -1,0 +1,60 @@
+---
+title: "Transformers"
+description: "The architecture behind modern AI — how attention mechanisms enable understanding of context and relationships"
+category: "AI & Machine Learning"
+domain: "ai-ml"
+related: ["neural-networks"]
+---
+
+Transformers are the architecture behind modern AI systems like GPT and BERT. They use attention mechanisms to understand relationships between elements in sequences, enabling them to process language, images, and other structured data. Understanding transformers reveals how modern AI understands context and relationships.
+
+<PrimaryVisual title="Attention in Transformers" caption="How transformers use attention to understand relationships" diagramId="transformers">
+  <TransformersDiagram />
+</PrimaryVisual>
+
+A transformer processes sequences (like sentences or images) by attending to all elements simultaneously. Unlike previous architectures that processed sequences step by step, transformers can look at the entire sequence at once, understanding how each element relates to every other element. This parallel processing and global attention is what makes transformers powerful.
+
+Understanding transformers reveals how modern AI processes information and why attention mechanisms are fundamental to understanding context.
+
+## The Attention Mechanism
+
+The core innovation of transformers is attention. Attention allows each element in a sequence to attend to (focus on) other elements, learning which relationships matter. For example, in the sentence "The cat sat on the mat," attention might learn that "cat" relates to "sat" and "mat," understanding the sentence's structure.
+
+Attention is computed by comparing each element to every other element, determining how much each should influence the others. This creates a rich representation where each element understands its context.
+
+## Self-Attention
+
+Self-attention is the mechanism where elements attend to other elements in the same sequence. Each element creates queries, keys, and values, and uses them to determine how much to attend to other elements. This allows the model to learn complex relationships within the data.
+
+Self-attention is what enables transformers to understand long-range dependencies — relationships between elements that are far apart in the sequence. This is crucial for understanding language, where meaning often depends on distant words.
+
+## Why Transformers Work
+
+Transformers are effective because they:
+
+- **Process in parallel**: Unlike sequential models, transformers process entire sequences simultaneously
+- **Understand relationships**: Attention mechanisms learn which relationships matter
+- **Scale well**: Transformers can be made larger and trained on more data
+- **Transfer learning**: Pre-trained transformers can be fine-tuned for specific tasks
+
+These properties make transformers suitable for many tasks, from language understanding to image processing.
+
+## The Mental Model
+
+Think of attention as a spotlight. When you read a sentence, you focus on different words at different times, understanding how they relate. Attention works similarly — it focuses on different parts of the input, learning which relationships matter for understanding.
+
+Transformers work the same way. They use attention to focus on different parts of the input, learning relationships and building understanding. This attention-based understanding is what makes transformers effective.
+
+This mental model helps explain why transformers are powerful. Just as focusing attention helps you understand, transformers use attention to understand. And just as you can attend to multiple things simultaneously, transformers can attend to the entire sequence at once.
+
+## Why This Matters
+
+Understanding transformers changes how you think about AI. You begin to see that modern AI isn't just pattern matching — it's understanding relationships and context through attention. You understand why transformers are effective and how they differ from previous architectures.
+
+You also begin to appreciate that attention is a general mechanism. It's not specific to language — it can be applied to any sequence data, from images to time series. This generality is what makes transformers versatile.
+
+More fundamentally, understanding transformers reveals that AI understanding comes from relationships. By learning which relationships matter, transformers build rich representations that capture meaning, not just patterns.
+
+<ClosingInsight>
+Transformers reveal that AI understanding comes from relationships. Through attention mechanisms, transformers learn which relationships matter, building rich representations that capture meaning and context.
+</ClosingInsight>

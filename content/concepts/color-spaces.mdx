@@ -1,0 +1,63 @@
+---
+title: "Color Spaces"
+description: "How computers represent color — the mathematical models that bridge human perception and digital storage"
+category: "Pixels & Color"
+domain: "pixels-color"
+related: ["how-screens-work"]
+---
+
+<PrimaryVisual title="Color Space Transformation" caption="How colors move between different mathematical representations" diagramId="color-space-flow">
+  <ColorSpaceFlowDiagram />
+</PrimaryVisual>
+
+Color is one of the most fundamental aspects of visual computing, yet how computers represent color is often misunderstood. We see colors as continuous, perceptual experiences, but computers must represent them as discrete numbers. The bridge between these worlds is the color space — a mathematical model that maps human color perception to digital values.
+
+Understanding color spaces changes how you think about digital images, displays, and the relationship between what we see and what computers store.
+
+## The Problem of Representation
+
+Human color perception is continuous and three-dimensional. We can distinguish millions of colors, and the relationships between colors are complex. A computer, however, can only store discrete numbers. To represent color digitally, we need a system that maps the continuous space of human color perception onto a discrete grid of numbers.
+
+This mapping is what a color space provides. It defines a coordinate system for color, with axes that correspond to different aspects of color perception. The most common color space for displays is RGB — Red, Green, Blue — which corresponds roughly to how our eyes perceive color through three types of cone cells.
+
+## RGB: Additive Color
+
+RGB is an additive color space. This means colors are created by adding light together. When all three components are at maximum, you get white. When all are at zero, you get black. This matches how screens work — they emit light, and different combinations of red, green, and blue light create different colors.
+
+But RGB has limitations. The relationship between RGB values and perceived brightness is not linear. Equal changes in RGB values don't produce equal changes in perceived brightness. This is why simply averaging RGB values doesn't produce a perceptually accurate grayscale image.
+
+## Other Color Spaces
+
+Different color spaces serve different purposes. HSL (Hue, Saturation, Lightness) is more intuitive for humans — it separates the color itself (hue) from how intense it is (saturation) and how bright it is (lightness). This makes it easier to adjust colors in image editing software.
+
+CMYK (Cyan, Magenta, Yellow, Black) is used for printing, where colors are created by subtracting light rather than adding it. A printed page reflects light, so you start with white (all light) and subtract colors to create the desired result.
+
+Lab color space is designed to be perceptually uniform — equal distances in Lab space correspond to equal perceived color differences. This makes it useful for color correction and image processing where perceptual accuracy matters.
+
+## Color Gamuts and Limitations
+
+Not all colors can be represented in all color spaces. Each color space has a gamut — a range of colors it can represent. The gamut of a computer display is different from the gamut of a printer, which is different from the gamut of human vision.
+
+When you convert an image from one color space to another, colors outside the target gamut must be mapped to colors within it. This mapping can cause colors to shift or become less saturated. Understanding gamuts helps you understand why a photograph might look different on screen than when printed, or why some colors seem impossible to represent accurately.
+
+<SecondaryVisual title="Color Gamut Comparison" caption="Visualizing the different ranges of colors that different systems can represent">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of a color space as a language for describing color. Just as different languages have different words for the same concept, different color spaces have different ways of representing the same color. RGB might describe a color as (255, 128, 64), while HSL might describe it as (20°, 75%, 63%). Both refer to the same color, but use different coordinate systems.
+
+Understanding this helps you see that color conversion is translation — moving from one coordinate system to another. Like translation between languages, some concepts translate easily, while others require approximation or lose nuance in translation.
+
+## Why This Matters
+
+Understanding color spaces changes how you work with digital images. You begin to see that color is not absolute — it's relative to the color space in which it's defined. The same RGB values will look different on different displays, because each display has its own color characteristics.
+
+You also begin to understand the importance of color management — the process of ensuring colors appear consistent across different devices and color spaces. This is why professional photographers use color-calibrated monitors and color profiles that describe the exact characteristics of their display.
+
+More fundamentally, understanding color spaces helps you see the relationship between perception and representation. Color exists in our minds as a perceptual experience, but computers can only work with numbers. Color spaces are the bridge between these worlds, allowing us to translate between human perception and digital computation.
+
+<ClosingInsight>
+Color spaces reveal that color is not a property of light itself, but a relationship between light, our eyes, our brains, and the mathematical models we use to represent it. Understanding this relationship is essential for working with digital color.
+</ClosingInsight>

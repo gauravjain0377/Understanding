@@ -1,0 +1,70 @@
+---
+title: "Frames & Frame Rate"
+description: "How animation works through discrete frames — why 60 FPS feels smooth and why frame timing matters"
+category: "Time & Systems"
+domain: "time-systems"
+related: ["event-loops", "latency"]
+---
+
+Animation and interaction in software work through frames — discrete images displayed in rapid succession. Frame rate is how many frames are displayed per second, and it determines how smooth animation feels. Understanding frames reveals why timing matters in interactive software and why 60 FPS is the target for smooth experiences.
+
+<PrimaryVisual title="Frame-by-Frame Animation" caption="How frames create the illusion of smooth motion" diagramId="frames">
+  <FramesDiagram />
+</PrimaryVisual>
+
+A frame is a single image displayed on screen. Animation works by displaying a sequence of frames rapidly, creating the illusion of motion. Frame rate (FPS — frames per second) determines how smooth this motion appears. Higher frame rates feel smoother, while lower frame rates feel choppy.
+
+Understanding frames reveals why timing is critical in interactive software and why maintaining consistent frame rates is essential for good user experience.
+
+## Frame Timing
+
+Frame timing is critical for smooth animation:
+
+- **60 FPS**: 16.67ms per frame — the target for smooth animation
+- **30 FPS**: 33.33ms per frame — acceptable but noticeably less smooth
+- **24 FPS**: 41.67ms per frame — cinematic but choppy for interaction
+- **Below 20 FPS**: Clearly choppy and unpleasant
+
+The difference between 30 FPS and 60 FPS is noticeable, especially in interactive applications. Users can perceive the difference, and it affects how software feels.
+
+## Why 60 FPS?
+
+60 FPS is the target because:
+
+- **Display refresh**: Most displays refresh at 60 Hz (60 times per second)
+- **Perception**: Above 60 FPS, improvements are less noticeable
+- **Smoothness**: 60 FPS feels smooth and responsive
+- **Standard**: It's become the expected frame rate for interactive software
+
+Maintaining 60 FPS means completing all work (rendering, logic, I/O) within 16.67ms per frame. This is a tight constraint that requires efficient code and careful optimization.
+
+## Frame Budget
+
+The frame budget is the time available for each frame. At 60 FPS, the budget is 16.67ms. This time must be divided between:
+
+- **Input processing**: Handling user input
+- **Logic updates**: Updating game state, animations
+- **Rendering**: Drawing graphics
+- **System overhead**: Operating system, garbage collection
+
+If any part exceeds its budget, frames are dropped, and the frame rate drops below 60 FPS.
+
+## The Mental Model
+
+Think of frames as pages in a flipbook. Each page shows a slightly different image, and flipping through them quickly creates the illusion of motion. The faster you flip, the smoother the motion appears. But if you flip too slowly, the motion looks choppy.
+
+Software animation works the same way. Each frame is like a page, and displaying frames rapidly creates animation. The frame rate is like the flipping speed — higher rates create smoother animation. But if frames take too long to render, the rate drops, and animation becomes choppy.
+
+This mental model helps explain why frame timing matters. Just as a flipbook needs consistent page timing for smooth animation, software needs consistent frame timing. And just as flipping too slowly makes animation choppy, low frame rates make software feel unresponsive.
+
+## Why This Matters
+
+Understanding frames changes how you think about performance. You begin to see that performance isn't just about speed — it's about consistent timing. You understand why 60 FPS matters and why frame drops are noticeable. You see that the frame budget is a real constraint that affects how you write code.
+
+You also begin to appreciate that frames are the unit of interactive software. Everything happens within frames — input, logic, rendering. Understanding frames helps you understand how interactive software works and why timing is critical.
+
+More fundamentally, understanding frames reveals that interactive software is temporal. It's not just about what happens, but when it happens. This temporal dimension is what makes animation and interaction possible, and understanding it is essential for building responsive software.
+
+<ClosingInsight>
+Frames reveal that interactive software is temporal. Animation and interaction work through discrete frames displayed rapidly, and maintaining consistent frame timing is essential for smooth, responsive experiences.
+</ClosingInsight>

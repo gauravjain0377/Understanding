@@ -1,0 +1,61 @@
+---
+title: "Bézier Curves"
+description: "The mathematical foundation of smooth curves in digital design — how control points create elegant paths"
+category: "Fonts & Vectors"
+domain: "fonts-vectors"
+related: []
+---
+
+<PrimaryVisual title="Bézier Curve Construction" caption="How control points define smooth curves" diagramId="bezier-curve">
+  <BezierCurveDiagram />
+</PrimaryVisual>
+
+Bézier curves are everywhere in digital design. They define the shapes of fonts, the paths of vector graphics, and the smooth animations in user interfaces. Yet most people who work with them don't understand how they actually work — how a few control points create elegant, smooth curves.
+
+Understanding Bézier curves changes how you think about digital design, typography, and the relationship between mathematics and visual form.
+
+## The Intuition
+
+A Bézier curve is defined by control points. For a cubic Bézier curve — the most common type — you need four points. The curve starts at the first point and ends at the last point. The two middle points don't lie on the curve, but they control its shape — they "pull" the curve toward them.
+
+Think of it like this: imagine you're walking from point A to point D. You're not walking in a straight line. Instead, you're being pulled toward point B as you start, and toward point C as you finish. The result is a smooth, curved path that starts heading toward B, then gradually shifts to head toward C, and finally arrives at D.
+
+This is the essence of a Bézier curve: it's a weighted interpolation between control points, where the weights change smoothly as you move along the curve.
+
+## The Mathematics
+
+The mathematical definition of a Bézier curve uses Bernstein polynomials. For a cubic curve with control points P0, P1, P2, and P3, the curve at parameter t (where t goes from 0 to 1) is:
+
+B(t) = (1-t)³P0 + 3(1-t)²tP1 + 3(1-t)t²P2 + t³P3
+
+This formula might look complex, but it's actually elegant. Each term represents the contribution of one control point, weighted by how far along the curve you are. When t=0, only P0 contributes (you're at the start). When t=1, only P3 contributes (you're at the end). In between, the contributions blend smoothly.
+
+The key insight is that this formula guarantees smoothness. The curve is continuous, and its derivatives are continuous, which means no sharp corners or sudden changes in direction.
+
+## Why This Matters for Design
+
+Bézier curves are perfect for design because they're intuitive to manipulate. A designer can place control points and immediately see how they affect the curve. Moving a control point changes the curve in a predictable way — the curve is "pulled" toward the new position.
+
+This makes Bézier curves ideal for font design. Each letter is defined by curves, and font designers can adjust control points to fine-tune the shape of each letter. The same curves can be scaled to any size without losing quality, which is why vector fonts look sharp at any resolution.
+
+<SecondaryVisual title="Control Point Influence" caption="How moving control points affects the curve shape">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of a Bézier curve as a flexible string attached to control points. The string wants to be straight, but the control points pull it in different directions. The result is a curve that balances these competing pulls, creating a smooth, natural-looking path.
+
+This mental model helps you understand why Bézier curves feel "right" for design. They mimic the way physical objects bend under forces — not rigid, not chaotic, but smoothly responding to influences.
+
+## Why This Matters
+
+Understanding Bézier curves changes how you work with vector graphics and typography. You begin to see that every smooth curve is the result of careful control point placement. You understand why some curves look natural and others look mechanical — it's all about the relationship between the control points.
+
+You also begin to appreciate the elegance of the mathematical model. What looks like a simple curve is actually a sophisticated interpolation, a smooth blending of influences that creates visual beauty from mathematical precision.
+
+More fundamentally, understanding Bézier curves helps you see the relationship between mathematics and design. The curves we use in digital design aren't arbitrary — they're the result of mathematical principles that guarantee smoothness, continuity, and aesthetic appeal.
+
+<ClosingInsight>
+Bézier curves reveal that elegance in design comes from mathematical precision. The smooth curves we take for granted in digital interfaces are the result of careful mathematical models that balance simplicity and control.
+</ClosingInsight>

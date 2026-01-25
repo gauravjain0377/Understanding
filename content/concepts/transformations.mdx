@@ -1,0 +1,64 @@
+---
+title: "3D Transformations"
+description: "How objects move, rotate, and scale in 3D space — the mathematics of positioning and orienting graphics"
+category: "3D & Graphics"
+domain: "3d-graphics"
+related: ["shaders", "gpu-mental-model"]
+---
+
+Every object in 3D graphics is positioned, oriented, and scaled through transformations. Transformations are mathematical operations that move objects in space, rotate them around axes, and change their size. Understanding transformations reveals how 3D graphics position and orient objects, and how these operations are represented mathematically.
+
+<PrimaryVisual title="Transforming Objects in Space" caption="How translation, rotation, and scaling work" diagramId="transformations">
+  <TransformationsDiagram />
+</PrimaryVisual>
+
+Transformations are operations that change an object's position, orientation, or size in 3D space. The three fundamental transformations are translation (moving), rotation (turning), and scaling (resizing). These transformations are represented as matrices, which can be combined to create complex movements.
+
+Understanding transformations reveals how 3D graphics position objects and how these operations are computed efficiently using matrix mathematics.
+
+## The Three Transformations
+
+The fundamental transformations are:
+
+- **Translation**: Moving an object from one position to another
+- **Rotation**: Rotating an object around an axis
+- **Scaling**: Changing an object's size (uniformly or non-uniformly)
+
+These transformations can be combined. For example, you might translate an object to a position, then rotate it, then scale it. The order matters — rotating then translating produces different results than translating then rotating.
+
+## Matrix Representation
+
+Transformations are represented as matrices — mathematical structures that can efficiently combine multiple transformations. A transformation matrix encodes how to transform a point from one position to another.
+
+Matrix multiplication allows transformations to be combined. If you have a translation matrix and a rotation matrix, multiplying them produces a matrix that does both transformations. This is efficient because you can compute the combined transformation once, then apply it to many points.
+
+## The Pipeline
+
+In the graphics pipeline, transformations happen in sequence:
+
+1. **Model space**: Objects are defined in their own coordinate system
+2. **World space**: Objects are transformed to world coordinates
+3. **View space**: The scene is transformed relative to the camera
+4. **Screen space**: The scene is projected onto the 2D screen
+
+Each stage applies transformations, building up from local coordinates to screen coordinates.
+
+## The Mental Model
+
+Think of transformations as instructions for moving furniture. Translation is "move it 3 feet to the right." Rotation is "turn it 45 degrees." Scaling is "make it twice as big." You can combine these instructions, and the order matters — turning then moving is different from moving then turning.
+
+3D graphics work the same way. Transformations are instructions for positioning objects, and they can be combined. The order matters, and matrix mathematics provides an efficient way to combine them.
+
+This mental model helps explain why transformations are powerful. Just as you can position furniture by combining simple instructions, you can position 3D objects by combining simple transformations. And just as instructions can be written down and reused, transformation matrices can be computed once and applied to many points.
+
+## Why This Matters
+
+Understanding transformations changes how you think about 3D graphics. You begin to see that positioning objects is mathematical — every position, every rotation, every scale is computed through matrix operations. You understand why the order of transformations matters and how to combine them correctly.
+
+You also begin to appreciate that transformations are efficient. Matrix mathematics allows complex combinations of transformations to be computed once and applied to many points. This efficiency is what makes real-time 3D graphics possible.
+
+More fundamentally, understanding transformations reveals that 3D graphics are mathematical. Objects don't just exist in space — they're positioned there through mathematical operations. This mathematical foundation is what makes 3D graphics precise and predictable.
+
+<ClosingInsight>
+Transformations reveal that 3D graphics are mathematical. Every object's position, orientation, and size are computed through matrix operations, making 3D graphics precise, predictable, and efficient.
+</ClosingInsight>

@@ -1,0 +1,68 @@
+---
+title: "Type Checking"
+description: "How compilers verify that code uses types correctly — catching errors before execution"
+category: "Compilers & Interpreters"
+domain: "compilers-interpreters"
+related: ["abstract-syntax-trees", "compilation-vs-interpretation"]
+---
+
+Before code can be executed, it must be verified to be correct. Type checking is the process of analyzing code to ensure that types are used correctly — that numbers aren't added to strings, that functions are called with the right arguments, and that variables are used in ways that match their declared types. It's how compilers catch errors before execution.
+
+<PrimaryVisual title="Verifying Type Correctness" caption="How type checkers analyze code to find type errors" diagramId="type-checking">
+  <TypeCheckingDiagram />
+</PrimaryVisual>
+
+Type checking examines the AST and tracks the types of every expression, variable, and function. It verifies that operations are performed on compatible types, that function calls match their signatures, and that assignments are type-safe. When it finds a mismatch, it reports a type error.
+
+Understanding type checking reveals how static analysis can catch errors before code runs, and why type systems are a powerful tool for writing correct programs.
+
+## The Challenge
+
+Code can have many kinds of errors. Some are obvious — syntax errors that prevent parsing. Others are subtle — using a variable as a number when it's actually a string, or calling a function with the wrong number of arguments. These errors might not be discovered until the code runs, and even then, they might only appear in certain conditions.
+
+Type checking addresses this by analyzing code statically — before execution. It tracks types through the code and verifies that they're used correctly. This catches many errors early, when they're easier to fix.
+
+## How Type Checking Works
+
+Type checking works by traversing the AST and building a type environment — a mapping from variables to their types. As it encounters each construct, it:
+
+1. **Infers types**: Determines the type of expressions based on their components
+2. **Checks compatibility**: Verifies that operations are performed on compatible types
+3. **Tracks variables**: Records the types of variables as they're declared and used
+4. **Validates calls**: Ensures function calls match their signatures
+
+For example, when checking `let x: number = 42;`, the type checker records that `x` has type `number`. When it later encounters `x + y`, it checks that `y` is also a number. If `y` is a string, it reports a type error.
+
+## Static vs Dynamic Typing
+
+Type checking can happen at different times:
+
+- **Static type checking**: Happens at compile time, before code runs. Languages like TypeScript, Java, and C++ use static type checking.
+
+- **Dynamic type checking**: Happens at runtime, as code executes. Languages like Python and JavaScript use dynamic type checking (though tools like TypeScript add static checking).
+
+Static type checking catches errors earlier and can provide better tooling (like autocomplete and refactoring support). Dynamic type checking is more flexible but can allow errors to slip through until runtime.
+
+## Type Inference
+
+Some languages can infer types without explicit annotations. The type checker analyzes how variables are used and determines their types automatically. For example, in `let x = 42;`, the type checker can infer that `x` is a number because `42` is a number literal.
+
+Type inference makes code more concise while still providing type safety. It's a balance between the safety of static types and the convenience of not writing type annotations everywhere.
+
+## The Mental Model
+
+Think of type checking as proofreading for types. Just as a proofreader checks that words are spelled correctly and sentences are grammatically correct, a type checker verifies that types are used correctly. It's a quality assurance step that catches mistakes before they cause problems.
+
+This mental model helps explain why type checking is valuable. Just as proofreading improves writing quality, type checking improves code quality. It catches errors early, when they're easier to fix, and provides confidence that code is correct.
+
+## Why This Matters
+
+Understanding type checking changes how you think about programming languages. You begin to see that types aren't just annotations — they're a way of expressing constraints that the compiler can verify. You understand why type errors occur and how to fix them.
+
+You also begin to appreciate the power of static analysis. Type checking is just one form of static analysis — analyzing code without running it. Other forms include linting, security analysis, and performance analysis. All of these are possible because code can be analyzed as structure, not just executed.
+
+More fundamentally, understanding type checking reveals that correctness can be verified before execution. Not all errors can be caught statically, but many can — and catching them early saves time and prevents bugs from reaching production.
+
+<ClosingInsight>
+Type checking reveals that correctness can be verified before execution. By analyzing code structure and tracking types, compilers can catch many errors early, when they're easier to fix and before they cause problems in production.
+</ClosingInsight>

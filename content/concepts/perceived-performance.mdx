@@ -1,0 +1,59 @@
+---
+title: "Perceived Performance"
+description: "How fast software feels versus how fast it actually is — why perception matters more than measurement"
+category: "Human–Computer Interaction"
+domain: "human-computer-interaction"
+related: ["feedback-loops", "cognitive-load"]
+---
+
+Software can be fast but feel slow, or slow but feel fast. Perceived performance is how fast software feels to users, which often differs from actual performance. Understanding perceived performance reveals why loading states, progress indicators, and optimistic updates matter more than raw speed measurements.
+
+<PrimaryVisual title="Feeling vs Reality" caption="How feedback and design affect how fast software feels" diagramId="perceived-performance">
+  <PerceivedPerformanceDiagram />
+</PrimaryVisual>
+
+Perceived performance is about the user experience of speed, not just the technical measurement. An operation that takes 3 seconds can feel instant if it provides immediate feedback, while an operation that takes 1 second can feel slow if it provides no feedback. The difference is in how the system communicates with the user during the wait.
+
+Understanding perceived performance reveals that making software feel fast is often more important than making it actually fast, and that good design can dramatically improve perceived performance without changing actual performance.
+
+## The Perception Gap
+
+There's often a gap between actual performance and perceived performance:
+
+- **Actual performance**: Measured in milliseconds, CPU cycles, network requests
+- **Perceived performance**: How fast it feels to users, influenced by feedback, expectations, and context
+
+A 2-second page load with a loading spinner can feel faster than a 1-second page load with a blank screen, because the spinner provides feedback and sets expectations.
+
+## Improving Perceived Performance
+
+Several techniques improve perceived performance:
+
+- **Immediate feedback**: Show something immediately, even if the full result isn't ready
+- **Progress indicators**: Show progress for operations that take time
+- **Optimistic updates**: Update the UI immediately, then sync with the server
+- **Skeleton screens**: Show content structure while loading
+- **Progressive loading**: Load and display content as it becomes available
+- **Smooth animations**: Use animations to make transitions feel natural
+
+These techniques don't make software faster, but they make it feel faster by providing feedback and managing expectations.
+
+## The Mental Model
+
+Think of perceived performance as waiting in line. If you can see the line moving and know how long it will take, waiting feels manageable. If you can't see progress and don't know how long it will take, waiting feels interminable, even if it's actually shorter.
+
+Software works the same way. Operations with feedback feel faster because users can see progress and have expectations. Operations without feedback feel slower because users don't know what's happening or how long it will take.
+
+This mental model helps explain why feedback is essential for perceived performance. Just as seeing line progress makes waiting feel shorter, seeing operation progress makes software feel faster.
+
+## Why This Matters
+
+Understanding perceived performance changes how you think about optimization. You begin to see that making software feel fast is often more valuable than making it actually fast. A 10% improvement in actual speed might be imperceptible, while adding a loading spinner can make software feel dramatically faster.
+
+You also begin to appreciate that perceived performance is about communication. The system is communicating with users about what's happening and how long it will take. Good communication makes waiting feel shorter; poor communication makes it feel longer.
+
+More fundamentally, understanding perceived performance reveals that user experience is about perception, not just measurement. What matters is how users feel, not just what instruments measure. Good design optimizes for perception, not just performance.
+
+<ClosingInsight>
+Perceived performance reveals that how fast software feels matters more than how fast it actually is. By providing feedback and managing expectations, good design can make software feel dramatically faster without changing actual performance.
+</ClosingInsight>

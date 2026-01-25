@@ -1,0 +1,72 @@
+---
+title: "Abstract Syntax Trees"
+description: "The tree structure that represents code's meaning — how compilers and tools understand programs"
+category: "Compilers & Interpreters"
+domain: "compilers-interpreters"
+related: ["parsing", "lexing-tokenization"]
+---
+
+After parsing, code is represented as a tree structure called an abstract syntax tree, or AST. This tree captures the essential structure and meaning of code, stripped of surface-level details like punctuation and formatting. It's the representation that compilers, interpreters, and tools use to understand, analyze, and transform code.
+
+<PrimaryVisual title="Code as Tree Structure" caption="How code is represented as a hierarchical tree" diagramId="ast">
+  <AstDiagram />
+</PrimaryVisual>
+
+An abstract syntax tree is a tree data structure where each node represents a construct in the programming language. The root represents the entire program, and nodes branch down to represent statements, expressions, and their components. The tree structure reflects the hierarchical nature of code — how expressions nest, how statements relate, and how the code is organized.
+
+Understanding ASTs reveals how tools can analyze and transform code by manipulating tree structures, and why this representation is more powerful than working with raw text.
+
+## Why Abstract?
+
+The "abstract" in abstract syntax tree means that unnecessary details are removed. An AST doesn't include:
+- Whitespace and formatting
+- Comments
+- Exact punctuation (parentheses might be implicit in the tree structure)
+- Keywords that are redundant given the tree structure
+
+What remains is the essential structure — the relationships between code elements, their hierarchy, and their meaning. This abstraction makes ASTs easier to work with than parse trees, which include every detail from the source code.
+
+## The Structure
+
+An AST node typically contains:
+- **Type**: What kind of construct it represents (e.g., "IfStatement", "BinaryExpression", "VariableDeclaration")
+- **Children**: Other nodes that represent its components
+- **Properties**: Additional information (e.g., a variable name, an operator type, a literal value)
+
+For example, the expression `x + y * 2` might be represented as a tree where:
+- The root is a `BinaryExpression` with operator `+`
+- Its left child is an `Identifier` with name `x`
+- Its right child is a `BinaryExpression` with operator `*`
+- That expression's children are an `Identifier` `y` and a `Literal` `2`
+
+The tree structure naturally represents operator precedence — `*` is deeper in the tree than `+`, showing that it's evaluated first.
+
+## How Tools Use ASTs
+
+ASTs are the foundation for many code processing tasks:
+
+- **Type checking**: The type checker walks the AST, analyzing each node to determine types
+- **Optimization**: Optimizers transform the AST, simplifying expressions and removing dead code
+- **Code generation**: Code generators traverse the AST, emitting target code for each node
+- **Static analysis**: Linters and analyzers examine the AST to find patterns and potential issues
+- **Refactoring**: Tools transform the AST to restructure code while preserving meaning
+
+All of these tasks are possible because the AST represents code structure, not just text. Tools can reason about what code means, not just what it looks like.
+
+## The Mental Model
+
+Think of an AST as a family tree for code. Just as a family tree shows relationships between people, an AST shows relationships between code elements. The root is the ancestor, and nodes branch down to descendants. Each level represents a different level of abstraction — from the whole program down to individual identifiers and literals.
+
+This mental model helps explain why ASTs are powerful. Just as you can understand family relationships by looking at a family tree, tools can understand code relationships by looking at an AST. And just as you can trace ancestry through a family tree, tools can trace execution flow through an AST.
+
+## Why This Matters
+
+Understanding ASTs changes how you think about code. You begin to see that code isn't just text — it's a structured representation that can be analyzed and transformed. You understand why tools can do things that would be difficult with raw text, like refactoring or static analysis.
+
+You also begin to appreciate the power of tree representations. Trees can represent any hierarchical structure, and code is inherently hierarchical. This makes ASTs a natural fit for representing code, and tree manipulation a natural way to transform code.
+
+More fundamentally, understanding ASTs reveals that code processing is about structure, not syntax. The syntax is just how we write code. The AST is what code actually is — a structured representation of meaning.
+
+<ClosingInsight>
+Abstract syntax trees reveal that code is structure, not text. The tree representation captures what code means, making it possible for tools to understand, analyze, and transform code in ways that would be impossible with raw text.
+</ClosingInsight>

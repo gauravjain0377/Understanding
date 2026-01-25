@@ -1,0 +1,76 @@
+---
+title: "Compilation vs Interpretation"
+description: "Two paths from source code to execution — understanding when code is translated and when it runs directly"
+category: "Compilers & Interpreters"
+domain: "compilers-interpreters"
+related: ["lexing-tokenization", "parsing", "type-checking"]
+---
+
+Source code must be executed, but there are two fundamentally different approaches: compilation and interpretation. Compilers translate code into another form before execution, while interpreters execute code directly. Understanding this distinction reveals why some languages are fast, why some are flexible, and why many modern systems use both approaches.
+
+<PrimaryVisual title="Two Execution Paths" caption="How compilation and interpretation differ in their approach to executing code" diagramId="compilation-vs-interpretation">
+  <CompilationVsInterpretationDiagram />
+</PrimaryVisual>
+
+Compilation and interpretation represent two different philosophies for executing code. A compiler translates source code into another form (often machine code) in a separate step before execution. An interpreter executes source code directly, translating and running it on the fly. Each approach has trade-offs in terms of speed, flexibility, and tooling.
+
+Understanding this distinction helps explain the characteristics of different programming languages and why modern systems often combine both approaches.
+
+## Compilation
+
+A compiler is a program that translates source code into another form, typically machine code or bytecode. The compilation happens in a separate step before execution:
+
+1. **Compile time**: The compiler reads the source code and produces output (machine code, bytecode, etc.)
+2. **Runtime**: The compiled output is executed
+
+Compiled languages include C, C++, Rust, and Go. The compilation step can catch errors early and produce optimized code, but it requires a separate build step and makes the development cycle slower.
+
+## Interpretation
+
+An interpreter is a program that executes source code directly. It reads the code and executes it immediately, translating as it goes:
+
+1. **Runtime**: The interpreter reads source code and executes it directly
+
+Interpreted languages include Python, JavaScript (in browsers), and Ruby. Interpretation is more flexible — code can be modified and run immediately — but it's typically slower than compiled code because translation happens during execution.
+
+## The Trade-offs
+
+Each approach has advantages:
+
+**Compilation:**
+- **Speed**: Compiled code is typically faster because translation happens once, and the compiler can optimize
+- **Early error detection**: Compilers catch errors before execution
+- **Distribution**: Compiled code can be distributed without source code
+
+**Interpretation:**
+- **Flexibility**: Code can be modified and run immediately
+- **Portability**: Interpreters can run on any platform they support
+- **Development speed**: No separate compilation step
+
+## Modern Approaches
+
+Many modern systems combine both approaches:
+
+- **Just-in-time (JIT) compilation**: Code is interpreted initially, then compiled to machine code when it's executed frequently (used by JavaScript engines, Java VMs)
+- **Bytecode**: Code is compiled to an intermediate form (bytecode), which is then interpreted or JIT-compiled (used by Java, Python, .NET)
+- **Transpilation**: Code is compiled to another high-level language (TypeScript to JavaScript, modern JavaScript to older JavaScript)
+
+These hybrid approaches aim to get the benefits of both compilation and interpretation.
+
+## The Mental Model
+
+Think of compilation as translating a book before reading it, and interpretation as translating while reading. A compiler translates the entire book into another language, then you read the translation. An interpreter reads the original book and translates each sentence as you go.
+
+This mental model helps explain the trade-offs. Compilation takes time upfront but makes reading faster. Interpretation starts reading immediately but is slower because translation happens during reading.
+
+## Why This Matters
+
+Understanding compilation vs interpretation changes how you think about programming languages. You begin to see that language characteristics — speed, flexibility, tooling — are often determined by the execution model. You understand why some languages are fast but require compilation, and why others are flexible but slower.
+
+You also begin to appreciate that the distinction isn't always clear-cut. Many modern systems use hybrid approaches, combining compilation and interpretation to get the best of both worlds.
+
+More fundamentally, understanding this distinction reveals that code execution is a multi-stage process. Whether compilation happens before execution or during execution, the goal is the same: translating human-readable code into something a computer can execute.
+
+<ClosingInsight>
+Compilation and interpretation represent two different philosophies for executing code. The choice between them involves trade-offs between speed, flexibility, and development experience — and many modern systems combine both approaches to get the best of both worlds.
+</ClosingInsight>

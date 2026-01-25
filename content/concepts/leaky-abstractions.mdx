@@ -1,0 +1,59 @@
+---
+title: "Leaky Abstractions"
+description: "When abstractions fail to hide complexity — why you sometimes need to understand what's underneath"
+category: "Abstractions & Complexity"
+domain: "abstractions-complexity"
+related: ["abstractions", "emergent-behavior"]
+---
+
+Abstractions are supposed to hide complexity, but sometimes they leak. A leaky abstraction is one that fails to fully hide the complexity underneath, forcing you to understand implementation details to use it effectively. Understanding leaky abstractions reveals why perfect abstraction is impossible and why you sometimes need to peek under the hood.
+
+<PrimaryVisual title="When Abstractions Leak" caption="How implementation details can leak through abstractions" diagramId="leaky-abstraction">
+  <LeakyAbstractionDiagram />
+</PrimaryVisual>
+
+A leaky abstraction exposes implementation details that users shouldn't need to know. For example, a database abstraction might leak SQL details, forcing you to understand SQL to write efficient queries. A network abstraction might leak TCP details, forcing you to understand TCP to handle connection issues. A graphics abstraction might leak GPU details, forcing you to understand GPUs to optimize rendering.
+
+Understanding leaky abstractions helps explain why some abstractions feel incomplete and why you sometimes need to understand lower layers to use higher layers effectively.
+
+## Why Abstractions Leak
+
+Abstractions leak for several reasons:
+
+- **Performance**: Sometimes you need to understand implementation details to get good performance
+- **Debugging**: When things go wrong, you need to understand what's underneath
+- **Limitations**: Abstractions can't hide everything — some details are too important
+- **Evolution**: Abstractions evolve, and new details leak through as they're added
+
+Perfect abstraction is impossible because abstractions must balance simplicity with completeness. Too simple, and they're incomplete. Too complete, and they're complex. Leaks happen when this balance is off.
+
+## Examples
+
+Many common abstractions leak:
+
+- **SQL databases**: The abstraction of "tables and queries" leaks SQL details, query planning, and indexing
+- **HTTP**: The abstraction of "request and response" leaks connection management, headers, and status codes
+- **File systems**: The abstraction of "files and folders" leaks block sizes, fragmentation, and caching
+- **Virtual machines**: The abstraction of "isolated environment" leaks resource limits, networking, and storage
+
+These leaks aren't necessarily bad — they're often necessary for performance or debugging. But they do mean that using these abstractions effectively requires understanding what's underneath.
+
+## The Mental Model
+
+Think of a leaky abstraction as a roof that leaks. The roof is supposed to keep the rain out, but sometimes water gets through. When it does, you need to understand the roof structure to fix it. You can't just ignore the leak — you need to understand what's happening above.
+
+Software abstractions work the same way. They're supposed to hide complexity, but sometimes details leak through. When they do, you need to understand the underlying implementation to work around the leak. You can't just use the abstraction blindly — you need to understand what's happening underneath.
+
+This mental model helps explain why leaky abstractions are frustrating. Just as a leaky roof defeats its purpose, a leaky abstraction defeats its purpose. But just as you can't have a perfect roof (there's always maintenance), you can't have a perfect abstraction (there are always leaks).
+
+## Why This Matters
+
+Understanding leaky abstractions changes how you think about using abstractions. You begin to see that abstractions are tools, not solutions. They make things easier, but they don't make understanding unnecessary. You understand that sometimes you need to peek under the hood, even when using high-level abstractions.
+
+You also begin to appreciate that leaks aren't always bad. Some leaks are intentional — they expose important details that users need. Other leaks are limitations — they're the price of abstraction. Understanding which is which helps you use abstractions effectively.
+
+More fundamentally, understanding leaky abstractions reveals that abstraction is a spectrum, not a binary. Abstractions can be more or less leaky, and the best abstractions minimize leaks while still being useful. Perfect abstraction is impossible, but good abstraction is achievable.
+
+<ClosingInsight>
+Leaky abstractions reveal that perfect abstraction is impossible. Abstractions will always leak some details, and understanding when and why they leak helps you use them effectively while knowing when to look underneath.
+</ClosingInsight>

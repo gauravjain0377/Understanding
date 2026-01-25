@@ -1,0 +1,55 @@
+---
+title: "GPU Mental Model"
+description: "How graphics processors work — the parallel architecture that makes real-time rendering possible"
+category: "3D & Graphics"
+domain: "3d-graphics"
+related: []
+---
+
+<PrimaryVisual title="GPU Architecture" caption="How thousands of cores process graphics in parallel" diagramId="gpu-model">
+  <GpuModelDiagram />
+</PrimaryVisual>
+
+GPUs are specialized processors designed for parallel computation, particularly graphics rendering. While CPUs have a few powerful cores optimized for sequential tasks, GPUs have thousands of smaller cores optimized for parallel tasks. This architecture makes them incredibly efficient for graphics, where millions of pixels need to be calculated simultaneously.
+
+Understanding GPUs changes how you think about graphics performance, parallel computation, and the relationship between hardware architecture and software capabilities.
+
+## The Parallel Architecture
+
+A GPU's power comes from parallelism. While a CPU might have 4-16 cores, a GPU can have thousands. Each core is simpler and less powerful than a CPU core, but together they can process massive amounts of data simultaneously.
+
+This architecture is perfect for graphics because rendering is inherently parallel. Each pixel can be calculated independently. Each triangle can be processed separately. The GPU can assign different cores to different pixels or triangles, processing them all at the same time.
+
+## The Graphics Pipeline
+
+GPU computation follows a pipeline — a series of stages that transform 3D models into 2D images. The pipeline includes vertex processing (transforming 3D coordinates), rasterization (converting to pixels), and fragment processing (calculating colors). Each stage can run in parallel across thousands of cores.
+
+This pipeline architecture is what makes real-time 3D graphics possible. By processing many vertices and pixels simultaneously, GPUs can render complex scenes at 60 frames per second or higher, something that would be impossible with sequential CPU processing.
+
+## Shaders
+
+Shaders are small programs that run on GPU cores. Vertex shaders process 3D coordinates. Fragment shaders (or pixel shaders) calculate colors for each pixel. These programs run in parallel across thousands of cores, each processing a different vertex or pixel.
+
+The power of shaders comes from their parallelism. A shader that processes one pixel can be run simultaneously on thousands of pixels. This is why GPU-accelerated effects like blur, lighting, and post-processing are so fast — they're running in parallel across the entire image.
+
+<SecondaryVisual title="Shader Execution" caption="How shaders run in parallel across GPU cores">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of a GPU as a factory with thousands of workers, each doing the same simple task on different pieces of data. A CPU is like a small team of experts, each capable of complex tasks but limited in number. For tasks that can be broken into many simple, parallel operations — like graphics — the factory (GPU) is much more efficient.
+
+This mental model helps explain many aspects of GPU computing. Why are GPUs fast for graphics? Because graphics computation is parallelizable. Why aren't GPUs good for everything? Because some tasks require sequential logic that doesn't parallelize well. Why do games need powerful GPUs? Because real-time graphics requires processing millions of pixels 60 times per second.
+
+## Why This Matters
+
+Understanding GPUs changes how you think about graphics performance. You begin to see that performance isn't just about clock speed — it's about parallelism, about how many operations can happen simultaneously. You see that GPU architecture is optimized for specific types of computation, and understanding this helps you write efficient graphics code.
+
+You also begin to understand the relationship between hardware and software. GPU architecture shapes what's possible in graphics. Features like real-time ray tracing, complex lighting, and high-resolution rendering are only possible because of GPU parallelism. Understanding this relationship helps you appreciate both the capabilities and limitations of graphics hardware.
+
+More fundamentally, understanding GPUs helps you see how specialized hardware enables new capabilities. GPUs aren't just faster CPUs — they're fundamentally different architectures optimized for different types of computation. This specialization is what makes modern graphics possible.
+
+<ClosingInsight>
+GPUs reveal that performance comes from architecture, not just speed. By optimizing for parallelism rather than sequential execution, GPUs can process graphics at speeds that would be impossible with traditional CPU architectures.
+</ClosingInsight>

@@ -1,0 +1,59 @@
+---
+title: "Internet Routing"
+description: "How data finds its way across the global network — the distributed system that makes the internet work"
+category: "Networking & The Web"
+domain: "networking-web"
+related: []
+---
+
+<PrimaryVisual title="Packet Routing Journey" caption="How data packets navigate the global network" diagramId="internet-routing">
+  <InternetRoutingDiagram />
+</PrimaryVisual>
+
+The internet is a network of networks — billions of devices connected through an intricate web of cables, routers, and protocols. When you send data across the internet, it doesn't travel in a straight line. Instead, it hops from router to router, each one making a decision about where to send it next, until it reaches its destination.
+
+Understanding internet routing changes how you think about network performance, reliability, and the distributed nature of modern computing.
+
+## The Routing Problem
+
+The fundamental challenge of internet routing is simple to state but complex to solve: given a destination address, how do you find the best path through a network with millions of possible routes? The answer can't be a centralized system — that would be too slow and too fragile. Instead, it must be distributed, with each router making local decisions based on partial information.
+
+This is what makes routing remarkable. There's no central authority that knows all possible paths. Instead, each router maintains a routing table — a local map of how to reach different destinations. These tables are constantly updated as the network changes, with routers sharing information about available paths and their costs.
+
+## How Routing Works
+
+When a packet arrives at a router, the router examines the destination address. It looks up this address in its routing table to find the next hop — the next router that should receive the packet. The router then forwards the packet to that next router, and the process repeats.
+
+The routing table doesn't contain complete paths. Instead, it contains the next step toward each destination. This is like asking for directions: you don't get a complete map, just "go this way, then ask again." This local, incremental approach scales to networks of any size.
+
+But how do routers build these tables? They use routing protocols — algorithms that allow routers to share information about network topology and path costs. Different protocols use different strategies: some prioritize speed, others prioritize reliability, some try to balance load across multiple paths.
+
+## The Distributed Nature
+
+The internet's routing system is fundamentally distributed. No single router knows the entire network topology. Instead, knowledge is spread across all routers, with each one knowing its local neighborhood and having partial information about distant parts of the network.
+
+This distribution is both a strength and a weakness. It's a strength because there's no single point of failure — if one router goes down, others can route around it. It's a weakness because routing decisions are based on incomplete information, which can lead to suboptimal paths or even routing loops.
+
+The system handles these challenges through protocols that converge toward optimal solutions over time, and through mechanisms that detect and break routing loops. The result is a system that's robust, scalable, and self-healing.
+
+<SecondaryVisual title="Routing Table Lookup" caption="How routers decide where to send each packet">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of internet routing as a distributed navigation system. Each router is like a local guide who knows the immediate area and has some information about distant places. When you ask for directions, the guide tells you to go to the next guide, who knows more about your destination.
+
+This mental model helps explain many aspects of routing. Why does routing take time? Because packets must be examined and forwarded at each hop. Why can routing be inefficient? Because each router makes decisions based on local information, not global knowledge. Why is routing robust? Because the loss of one router doesn't break the entire system — others can route around it.
+
+## Why This Matters
+
+Understanding internet routing changes how you think about network performance. You begin to see that latency isn't just about distance — it's about the number of hops, the speed of each router, and the efficiency of routing decisions. You see that network problems can have complex causes, involving multiple routers and routing protocols.
+
+You also begin to understand the importance of routing protocols and network architecture. The choice of routing protocol affects how quickly the network adapts to changes, how efficiently it uses bandwidth, and how robust it is to failures. Understanding these trade-offs helps you design better network systems.
+
+More fundamentally, understanding routing helps you see the internet as a distributed system. There's no central control, no single point of authority. Instead, there's a collection of independent routers, each making local decisions, that together create a global routing system. This distributed nature is what makes the internet scalable, robust, and fascinating.
+
+<ClosingInsight>
+Internet routing reveals that complex global behavior can emerge from simple local decisions. The path a packet takes is the result of thousands of independent routing choices, each one made with partial information, yet together creating a system that reliably delivers data across the globe.
+</ClosingInsight>

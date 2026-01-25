@@ -1,0 +1,67 @@
+---
+title: "Lexing & Tokenization"
+description: "How source code becomes structured tokens — the first step in understanding what code means"
+category: "Compilers & Interpreters"
+domain: "compilers-interpreters"
+related: ["parsing", "abstract-syntax-trees"]
+---
+
+Before a computer can execute code, it must first understand what the code says. This understanding begins with lexing — the process of converting raw source code text into a stream of meaningful tokens. It's the foundation of all language processing, whether for compilation, interpretation, or static analysis.
+
+<PrimaryVisual title="From Text to Tokens" caption="How source code is broken down into structured tokens" diagramId="lexing">
+  <LexingDiagram />
+</PrimaryVisual>
+
+Lexing, also called tokenization, is the process of analyzing source code character by character and grouping sequences of characters into tokens — the smallest meaningful units of a programming language. A token might be a keyword like `if`, an identifier like `variableName`, a number like `42`, or a punctuation mark like `;`.
+
+Understanding lexing reveals how programming languages are structured at their most fundamental level, and how tools can process code even before understanding its meaning.
+
+## The Challenge
+
+Source code is just text — a sequence of characters. But programming languages have structure. Keywords, identifiers, operators, and punctuation all have specific roles. To process code, we need to identify these elements and group them correctly.
+
+The challenge is that the boundaries between tokens aren't always obvious. Is `if` a keyword or part of an identifier? Is `==` one operator or two? Is `42.5` one number or two? Lexing solves these problems by applying the language's lexical rules — the rules that define what constitutes a valid token.
+
+## How Lexing Works
+
+Lexing works by scanning the source code character by character, maintaining state about what kind of token is being built. When the lexer encounters a character that can't be part of the current token, it finalizes that token and starts a new one.
+
+For example, when scanning `let x = 42;`, the lexer might:
+1. Read `l`, `e`, `t` — recognize this as the keyword `let`
+2. Encounter a space — finalize the `let` token
+3. Read `x` — recognize this as an identifier
+4. Encounter a space — finalize the `x` token
+5. Read `=` — recognize this as an assignment operator
+6. And so on...
+
+The lexer uses a state machine to track what kind of token it's building. Different states handle different token types: one state for identifiers, one for numbers, one for strings, one for operators, and so on.
+
+## Token Types
+
+Tokens fall into several categories:
+
+- **Keywords**: Reserved words like `if`, `let`, `return` that have special meaning
+- **Identifiers**: Names for variables, functions, and other entities
+- **Literals**: Constant values like numbers (`42`), strings (`"hello"`), booleans (`true`)
+- **Operators**: Symbols that perform operations (`+`, `==`, `&&`)
+- **Punctuation**: Structural elements like `;`, `(`, `)`, `{`, `}`
+
+Each token type has rules about what characters it can contain. Identifiers typically start with a letter and can contain letters, numbers, and underscores. Numbers can contain digits and a decimal point. Operators can be single characters or sequences like `==` or `&&`.
+
+## The Mental Model
+
+Think of lexing as reading a sentence and identifying the words. When you read "The cat sat," you don't see it as a continuous stream of letters. You see it as three distinct words: "The", "cat", and "sat". Lexing does the same for code — it identifies the "words" (tokens) that make up the programming language.
+
+This mental model helps explain why lexing comes before parsing. Just as you need to identify words before you can understand grammar, a compiler needs to identify tokens before it can understand the structure of the code.
+
+## Why This Matters
+
+Understanding lexing changes how you think about programming languages. You begin to see that languages are defined not just by their syntax, but by their lexical rules. You understand why some characters are special and others aren't, and why whitespace matters in some languages but not others.
+
+You also begin to appreciate the complexity that lexers handle. They must distinguish between similar-looking tokens (like `=` vs `==`), handle edge cases (like string literals containing quotes), and provide helpful error messages when tokens can't be formed.
+
+More fundamentally, understanding lexing reveals that code processing is a multi-stage pipeline. Lexing is just the first stage, converting unstructured text into structured tokens. The next stage — parsing — will use these tokens to build a tree representing the code's structure.
+
+<ClosingInsight>
+Lexing reveals that programming languages are structured at multiple levels. Before we can understand what code means, we must first understand what it says — and that understanding begins with breaking text into tokens.
+</ClosingInsight>

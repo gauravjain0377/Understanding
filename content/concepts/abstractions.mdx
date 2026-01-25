@@ -1,0 +1,60 @@
+---
+title: "Abstractions"
+description: "How complexity is hidden behind simple interfaces — the foundation of all software design"
+category: "Abstractions & Complexity"
+domain: "abstractions-complexity"
+related: ["leaky-abstractions", "emergent-behavior"]
+---
+
+Software is built in layers. Each layer hides complexity behind a simple interface, allowing higher layers to work without understanding the details below. This is abstraction — the fundamental technique that makes complex software possible. Understanding abstraction reveals how complexity is managed and why simple interfaces can hide sophisticated implementations.
+
+<PrimaryVisual title="Layers of Abstraction" caption="How complexity is hidden behind simple interfaces" diagramId="abstraction-layers">
+  <AbstractionLayersDiagram />
+</PrimaryVisual>
+
+An abstraction is a simplified model of something complex. It hides unnecessary details and exposes only what's needed. A function is an abstraction — it hides the implementation details and exposes a simple interface. A class is an abstraction — it hides internal state and exposes methods. An API is an abstraction — it hides the server implementation and exposes endpoints.
+
+Understanding abstraction reveals how software manages complexity by organizing it into layers, each simpler than the one below.
+
+## The Purpose
+
+Abstraction serves several purposes:
+
+- **Complexity management**: Hides complexity so higher layers can work simply
+- **Reusability**: Allows the same abstraction to be used in different contexts
+- **Maintainability**: Changes to implementation don't affect code using the abstraction
+- **Understanding**: Makes systems easier to understand by focusing on what matters
+
+Without abstraction, every piece of code would need to understand everything below it, making software impossible to build or maintain.
+
+## Levels of Abstraction
+
+Software has many levels of abstraction:
+
+- **Hardware**: CPUs, memory, storage — the physical layer
+- **Operating system**: Manages hardware, provides system calls
+- **Runtime**: Language runtimes, virtual machines
+- **Libraries**: Reusable code that provides functionality
+- **Applications**: End-user software built on libraries
+
+Each level builds on the one below, hiding complexity and providing a simpler interface.
+
+## The Mental Model
+
+Think of abstraction as a map. A map is an abstraction of a city — it doesn't show every building, every tree, every detail. It shows only what's needed for navigation: streets, landmarks, directions. The map hides complexity (the actual city) and exposes what matters (how to get around).
+
+Software abstractions work the same way. They hide complexity (implementation details) and expose what matters (the interface). Just as you can navigate a city using a map without understanding its construction, you can use an abstraction without understanding its implementation.
+
+This mental model helps explain why abstraction is powerful. Just as maps make navigation possible, abstractions make software possible. They allow us to work at a level of complexity we can understand, while the actual complexity is handled below.
+
+## Why This Matters
+
+Understanding abstraction changes how you think about software design. You begin to see that good design is about creating the right abstractions — ones that hide complexity without hiding what's important. You understand why interfaces matter more than implementations, and why changing implementations shouldn't break code that uses them.
+
+You also begin to appreciate that abstraction is everywhere. Every function, every class, every API is an abstraction. The question isn't whether to use abstraction — it's whether to use good abstractions or bad ones.
+
+More fundamentally, understanding abstraction reveals that software is built in layers of understanding. Each layer understands the layer below through its interface, not its implementation. This layered understanding is what makes complex software possible.
+
+<ClosingInsight>
+Abstraction reveals that software is built in layers of understanding. By hiding complexity behind simple interfaces, abstractions make it possible to build and understand complex systems that would be impossible to work with directly.
+</ClosingInsight>

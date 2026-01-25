@@ -1,0 +1,55 @@
+---
+title: "Event Loops"
+description: "How single-threaded systems handle concurrency — the mechanism that makes asynchronous programming possible"
+category: "Time & Systems"
+domain: "time-systems"
+related: ["why-async-systems-exist"]
+---
+
+<PrimaryVisual title="Event Loop Cycle" caption="How events are processed in a continuous cycle" diagramId="event-loop">
+  <EventLoopDiagram />
+</PrimaryVisual>
+
+Event loops are the mechanism that makes asynchronous programming possible in single-threaded environments. They allow programs to handle multiple operations concurrently without blocking, creating the illusion of parallel execution from sequential processing.
+
+Understanding event loops changes how you think about concurrency, performance, and the relationship between code execution and time.
+
+## The Core Mechanism
+
+An event loop is a continuous cycle that checks for events, executes callbacks, and waits for new events. It runs in a single thread, processing one thing at a time, but it does so quickly enough that multiple operations appear to happen simultaneously.
+
+The loop has three main phases: checking the event queue for pending callbacks, executing those callbacks, and then waiting for new events. This cycle repeats indefinitely, processing events as they arrive and executing the associated callbacks.
+
+## Non-Blocking Operations
+
+The key to event loops is non-blocking operations. When an operation would normally block — like reading from a file or waiting for a network response — the event loop doesn't wait. Instead, it registers a callback and continues processing other events. When the operation completes, the callback is added to the queue and executed in the next cycle.
+
+This is what makes asynchronous programming work. You can start multiple operations, and the event loop will handle them all, executing their callbacks when they complete. The program never blocks, even though it's running in a single thread.
+
+## The Queue System
+
+Event loops use queues to manage pending work. There's typically a main callback queue for regular operations, and sometimes additional queues for different priority levels or different types of events. The loop processes these queues in order, executing callbacks one at a time.
+
+This queue-based system is what creates the illusion of concurrency. Multiple operations can be "in flight" simultaneously, but their callbacks execute sequentially. The event loop ensures fairness by processing all queues before starting the cycle again.
+
+<SecondaryVisual title="Callback Execution" caption="How callbacks are queued and executed in order">
+  <AsyncTimelineDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of an event loop as a restaurant server. The server doesn't cook the food — they take orders, check on the kitchen, serve completed dishes, and take new orders. They're constantly moving, handling multiple tables, but they only do one thing at a time. The kitchen (the system) handles the actual work, and the server (the event loop) coordinates everything.
+
+This mental model helps explain many aspects of event loops. Why do long-running callbacks block everything? Because the server is busy with one table and can't attend to others. Why do promises and async/await work? Because they're ways of structuring callbacks that make the coordination easier to reason about. Why is the event loop single-threaded? Because having one server prevents coordination problems.
+
+## Why This Matters
+
+Understanding event loops changes how you write asynchronous code. You begin to see that async operations don't actually run in parallel — they're coordinated by the event loop, which executes their callbacks when they complete. You see that blocking operations break this coordination, preventing the loop from processing other events.
+
+You also begin to understand performance implications. Long-running callbacks delay the processing of other events, making the application feel unresponsive. Understanding this helps you write code that keeps callbacks short and defers heavy work, maintaining the responsiveness that event loops provide.
+
+More fundamentally, understanding event loops helps you see how single-threaded systems can handle concurrency. It's not about parallel execution — it's about efficient coordination, about processing events quickly enough that the system feels responsive even though it only does one thing at a time.
+
+<ClosingInsight>
+Event loops reveal that concurrency doesn't require parallel execution. A single thread, properly coordinated through an event loop, can handle multiple operations concurrently by processing events quickly and never blocking.
+</ClosingInsight>

@@ -1,0 +1,57 @@
+---
+title: "Compression"
+description: "How we represent information more efficiently — the art and science of removing redundancy"
+category: "Data & Compression"
+domain: "data-compression"
+related: []
+---
+
+<PrimaryVisual title="Compression Process" caption="How redundant information is removed to reduce size" diagramId="compression">
+  <CompressionDiagram />
+</PrimaryVisual>
+
+Compression is everywhere in computing. Images are compressed, videos are compressed, files are compressed, even network traffic is compressed. Yet most people don't understand how compression actually works — how we can represent the same information using fewer bits.
+
+Understanding compression changes how you think about data, storage, and the relationship between information and representation.
+
+## The Fundamental Idea
+
+Compression works by finding and removing redundancy. Most data contains patterns, repetitions, and predictable structures. Instead of storing every bit explicitly, compression algorithms identify these patterns and store them more efficiently.
+
+Think of it like this: if you had to describe a checkerboard, you wouldn't list every square individually. You'd say "alternating black and white squares in an 8x8 grid." That's compression — using a more efficient representation that captures the same information.
+
+## Lossless vs Lossy
+
+There are two main types of compression. Lossless compression preserves all information — you can reconstruct the original data exactly. Lossy compression discards some information that's considered less important, trading perfect accuracy for better compression ratios.
+
+Lossless compression is used for text, code, and data where every bit matters. Lossy compression is used for images, audio, and video where small losses in quality are acceptable if they significantly reduce file size.
+
+The choice between lossless and lossy depends on the use case. For archival storage or scientific data, lossless is essential. For streaming media or web images, lossy compression provides much better results with acceptable quality loss.
+
+## How It Works
+
+Compression algorithms work in different ways, but they all exploit patterns. Run-length encoding replaces repeated values with a count. Dictionary compression replaces common sequences with shorter codes. Transform compression (like JPEG) converts data to a different representation where redundancy is easier to identify and remove.
+
+The key insight is that compression is about representation, not about the data itself. The same information can be represented in many ways, and some representations are more efficient than others. Compression algorithms find efficient representations by identifying and exploiting patterns in the data.
+
+<SecondaryVisual title="Pattern Recognition" caption="How compression algorithms identify redundant information">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of compression as translation between languages. Some languages are more verbose than others for expressing the same idea. Compression is like translating from a verbose language to a concise one, finding shorter ways to express the same information.
+
+This mental model helps explain many aspects of compression. Why can't everything be compressed? Because truly random data has no patterns to exploit. Why do some files compress better than others? Because they contain more predictable patterns. Why is compression lossy sometimes acceptable? Because we can discard information that doesn't significantly affect our perception of the data.
+
+## Why This Matters
+
+Understanding compression changes how you think about data storage and transmission. You begin to see that file size isn't just about the amount of information — it's about how efficiently that information is represented. You see that the same data can take up very different amounts of space depending on how it's encoded.
+
+You also begin to understand the trade-offs. Better compression often requires more computation. Lossy compression trades quality for size. Understanding these trade-offs helps you choose the right compression method for each situation.
+
+More fundamentally, understanding compression helps you see the relationship between information and representation. Information isn't tied to a specific representation — the same information can be encoded in many ways, and some encodings are more efficient than others. Compression is the art of finding efficient encodings.
+
+<ClosingInsight>
+Compression reveals that information and representation are separate. The same information can be encoded in many ways, and compression is the process of finding more efficient encodings by identifying and exploiting patterns in the data.
+</ClosingInsight>

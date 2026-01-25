@@ -1,0 +1,55 @@
+---
+title: "Browser Internals"
+description: "How browsers transform code into visual interfaces — the complex system that renders the web"
+category: "Networking & The Web"
+domain: "networking-web"
+related: ["internet-routing"]
+---
+
+<PrimaryVisual title="Browser Rendering Pipeline" caption="How HTML, CSS, and JavaScript become pixels on screen" diagramId="browser-internals">
+  <BrowserInternalsDiagram />
+</PrimaryVisual>
+
+Browsers are among the most complex software applications ever created. They must parse HTML and CSS, execute JavaScript, manage network requests, render graphics, handle user input, and maintain security — all while providing a smooth, responsive user experience.
+
+Understanding browser internals changes how you think about web development, performance, and the relationship between code and visual output.
+
+## The Rendering Pipeline
+
+When a browser loads a webpage, it goes through a complex pipeline. First, it parses HTML to build the Document Object Model (DOM) — a tree structure representing the page structure. Then it parses CSS to build the CSS Object Model (CSSOM) — a representation of all styles. These are combined into a render tree, which determines what should be displayed and how.
+
+The render tree is then laid out — positions and sizes are calculated for each element. Finally, the page is painted — pixels are filled with colors, text, and images. This entire process happens in milliseconds, and it repeats whenever the page changes.
+
+## The JavaScript Engine
+
+JavaScript execution is separate from rendering but deeply integrated. The JavaScript engine parses code, compiles it (often just-in-time), and executes it. JavaScript can modify the DOM, trigger re-renders, and interact with browser APIs.
+
+The challenge is coordinating JavaScript execution with rendering. Long-running JavaScript blocks rendering, making the page feel unresponsive. Modern browsers use techniques like requestAnimationFrame and web workers to keep JavaScript from blocking the main thread.
+
+## The Event Loop
+
+Browsers use an event loop to coordinate all these activities. The loop processes events, executes JavaScript, performs rendering, and handles user input. It ensures that everything happens in the right order and that the browser remains responsive.
+
+Understanding the event loop helps you write efficient JavaScript. You learn to avoid blocking operations, to use asynchronous APIs, and to structure code so it doesn't interfere with rendering. This is essential for creating smooth, responsive web applications.
+
+<SecondaryVisual title="Main Thread Coordination" caption="How the browser coordinates parsing, rendering, and JavaScript">
+  <AsyncTimelineDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of a browser as a factory with multiple assembly lines. One line parses HTML, another processes CSS, another executes JavaScript, and another renders pixels. These lines must be coordinated — JavaScript can't modify the DOM while it's being rendered, and rendering can't happen while layout is being calculated.
+
+This mental model helps explain many aspects of browser behavior. Why do some operations block? Because they're on the same assembly line. Why is async JavaScript important? Because it doesn't block other lines. Why do browsers optimize rendering? Because the rendering line must run 60 times per second to feel smooth.
+
+## Why This Matters
+
+Understanding browser internals changes how you develop web applications. You begin to see that performance isn't just about code speed — it's about how code interacts with the browser's rendering pipeline. You see that some operations are expensive not because they're slow, but because they trigger expensive re-renders.
+
+You also begin to understand the importance of browser APIs and web standards. These aren't arbitrary — they're designed to work with the browser's architecture. Understanding this architecture helps you use APIs effectively and understand their limitations.
+
+More fundamentally, understanding browser internals helps you see the web as a complex system. A webpage isn't just code — it's code that's parsed, executed, and rendered by a sophisticated engine. Understanding this engine helps you work with it rather than against it.
+
+<ClosingInsight>
+Browser internals reveal that web development is about working with a complex system, not just writing code. Understanding how browsers parse, render, and execute helps you create applications that are fast, responsive, and reliable.
+</ClosingInsight>

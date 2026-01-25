@@ -1,0 +1,55 @@
+---
+title: "Bits & Binary"
+description: "The foundation of digital representation — how everything in computing reduces to ones and zeros"
+category: "Data & Compression"
+domain: "data-compression"
+related: ["compression"]
+---
+
+<PrimaryVisual title="Binary Representation" caption="How information is encoded as patterns of bits" diagramId="bits-binary">
+  <BitsBinaryDiagram />
+</PrimaryVisual>
+
+Everything in computing reduces to bits — ones and zeros, on and off, true and false. Text, images, sound, video, programs — all are ultimately represented as patterns of bits. Understanding bits and binary is understanding the foundation of how computers store and process information.
+
+Understanding bits and binary changes how you think about data, storage, and the relationship between information and representation.
+
+## What is a Bit?
+
+A bit is the smallest unit of information — a single binary digit that can be either 0 or 1. It's the fundamental building block of digital representation. Everything else is built from bits: bytes are groups of 8 bits, and larger units are built from bytes.
+
+The power of bits comes from combination. A single bit can represent two states. Two bits can represent four states. Three bits can represent eight states. With each additional bit, the number of possible states doubles. This exponential growth is what makes binary representation so powerful.
+
+## Binary Representation
+
+Binary representation uses powers of two. The rightmost bit represents 2⁰ (1), the next represents 2¹ (2), then 2² (4), 2³ (8), and so on. To convert binary to decimal, you multiply each bit by its power of two and sum the results.
+
+This system is natural for computers because digital circuits are binary — they're either on or off, high voltage or low voltage. Binary representation maps directly to these physical states, making it the natural choice for digital computation.
+
+## Encoding Information
+
+Different types of information are encoded differently. Text uses character encodings like ASCII or Unicode, where each character is assigned a number that's represented in binary. Numbers can be represented directly in binary. Images encode color values as binary numbers. Programs encode instructions as binary patterns.
+
+The key insight is that encoding is arbitrary — we choose how to represent information. The same information can be encoded in different ways, and different encodings have different properties. Understanding encoding helps you understand how data is stored and transmitted.
+
+<SecondaryVisual title="Bit Patterns" caption="How different bit patterns represent different values">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of bits as switches. Each switch can be on (1) or off (0). To represent more complex information, you use more switches. Eight switches (a byte) can represent 256 different states. With enough switches, you can represent anything.
+
+This mental model helps explain many aspects of computing. Why do files have sizes? Because they're made of bits, and you can count them. Why is there a limit to how many colors can be displayed? Because color is encoded in bits, and there are only so many bit patterns. Why do some operations take more memory? Because they require more bits to represent.
+
+## Why This Matters
+
+Understanding bits and binary changes how you think about data. You begin to see that all digital information is fundamentally the same — it's all patterns of bits. The difference between text, images, and programs is in how we interpret those patterns, not in what they fundamentally are.
+
+You also begin to understand the relationship between information and representation. Information exists independently of how it's represented, but representation determines how it can be stored, transmitted, and processed. Understanding this relationship helps you work with data more effectively.
+
+More fundamentally, understanding bits and binary helps you see computing at its most fundamental level. Everything reduces to bits — all the complexity of modern software is built on this simple foundation. Understanding this foundation helps you understand everything else.
+
+<ClosingInsight>
+Bits and binary reveal that all digital information is fundamentally the same — patterns of ones and zeros. The complexity of computing comes not from the representation, but from how we organize and interpret these simple patterns.
+</ClosingInsight>

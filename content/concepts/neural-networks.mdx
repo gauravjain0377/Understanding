@@ -1,0 +1,55 @@
+---
+title: "Neural Networks"
+description: "How simple computational units create complex intelligence — the mathematics of learning from data"
+category: "AI & Machine Learning"
+domain: "ai-ml"
+related: []
+---
+
+<PrimaryVisual title="Neural Network Structure" caption="How layers of neurons process information" diagramId="neural-network">
+  <NeuralNetworkDiagram />
+</PrimaryVisual>
+
+Neural networks are one of the most powerful and mysterious technologies in modern computing. They can recognize images, translate languages, and play games at superhuman levels. Yet at their core, they're built from simple mathematical operations — additions, multiplications, and non-linear functions — arranged in layers.
+
+Understanding neural networks changes how you think about intelligence, computation, and the relationship between simple rules and complex behavior.
+
+## The Basic Unit
+
+A neural network is built from neurons — simple computational units that take multiple inputs, weight them, sum them, and apply a non-linear function. Each neuron is like a tiny decision-maker: it receives information from other neurons, combines it according to learned weights, and produces an output.
+
+The power comes from connection. A single neuron is simple, but when you connect thousands or millions of neurons in layers, with each layer's outputs feeding into the next layer's inputs, you create a system capable of learning complex patterns.
+
+## Layers and Depth
+
+Neural networks are organized into layers. The first layer receives the input — raw data like pixel values or word embeddings. Each subsequent layer processes the outputs of the previous layer, extracting increasingly abstract features. The final layer produces the output — a classification, a prediction, or a generated value.
+
+Early layers might detect simple features like edges or basic shapes. Middle layers might detect combinations of these features — like faces or objects. Later layers might detect complex relationships and patterns. This hierarchical feature extraction is what allows neural networks to learn sophisticated representations from data.
+
+## Learning Through Adjustment
+
+The remarkable thing about neural networks is that they learn. They start with random weights — essentially guessing how to combine inputs. Through a process called backpropagation, they adjust these weights based on how wrong their predictions are. Over many iterations, the weights converge toward values that produce accurate predictions.
+
+This learning process is what makes neural networks powerful. You don't program them to solve a specific problem. Instead, you show them examples of the problem and let them figure out the solution through weight adjustment. The network discovers patterns in the data that you might not even know exist.
+
+<SecondaryVisual title="Weight Adjustment" caption="How networks learn by adjusting connection strengths">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of a neural network as a hierarchy of feature detectors. Each layer looks for patterns in the layer below it, building up from simple features to complex concepts. The network learns which features are important for the task at hand, and how to combine them to make predictions.
+
+This mental model helps explain many aspects of neural networks. Why do they need lots of data? Because they're learning patterns, and patterns require examples to discover. Why do they sometimes fail? Because they learn statistical patterns, not logical rules, and statistical patterns can be fooled. Why are they powerful? Because they can discover complex, non-linear relationships that would be difficult to program explicitly.
+
+## Why This Matters
+
+Understanding neural networks changes how you think about artificial intelligence. You begin to see that intelligence isn't about following rules — it's about learning patterns from data. You see that complex behavior can emerge from simple computational units when they're connected in the right way.
+
+You also begin to understand the limitations. Neural networks are statistical models, not logical systems. They learn correlations, not causations. They can be brittle — small changes to inputs can cause large changes to outputs. Understanding these limitations helps you use neural networks effectively and recognize when they're not the right tool.
+
+More fundamentally, understanding neural networks helps you see the relationship between computation and intelligence. Intelligence might not require complex algorithms or sophisticated reasoning. It might just require the right architecture — simple units, properly connected, learning from data.
+
+<ClosingInsight>
+Neural networks reveal that intelligence can emerge from simple computational units when they're connected in layers and allowed to learn. The complexity isn't in the individual neurons — it's in the patterns they discover through training.
+</ClosingInsight>

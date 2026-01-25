@@ -1,0 +1,57 @@
+---
+title: "Rasterization & Anti-aliasing"
+description: "How smooth curves become pixels — the process of converting vectors to raster images"
+category: "Fonts & Vectors"
+domain: "fonts-vectors"
+related: ["bezier-curves"]
+---
+
+Every smooth curve you see on a screen — every letter, every icon, every interface element — begins as a mathematical description. But screens are made of pixels, discrete squares arranged in a grid. The transformation from perfect mathematics to visible pixels is called rasterization, and understanding it reveals how digital display actually works.
+
+<PrimaryVisual title="Vector to Raster" caption="How smooth curves are converted to pixel grids" diagramId="rasterization">
+  <RasterizationDiagram />
+</PrimaryVisual>
+
+Rasterization is the process of converting vector graphics — smooth curves and shapes defined mathematically — into raster images — grids of pixels that can be displayed on screens. It's a fundamental operation in computer graphics, happening billions of times per second as we render text, interfaces, and images.
+
+Understanding rasterization changes how you think about digital graphics, typography, and the relationship between mathematical precision and visual display.
+
+## The Challenge
+
+Vector graphics are resolution-independent. A Bézier curve is defined by mathematical equations, so it can be rendered at any size without losing quality. But screens are made of pixels — discrete, fixed-size elements arranged in a grid. To display a vector graphic, we must convert it to pixels.
+
+This conversion is what rasterization does. It determines which pixels should be filled to represent a vector shape, and what color each pixel should be. The challenge is doing this accurately and efficiently, especially for complex shapes and at high resolutions.
+
+## The Rasterization Process
+
+Rasterization works by testing each pixel against the vector shape. For simple shapes like rectangles, this is straightforward. For complex curves, it requires mathematical calculations to determine whether each pixel is inside, outside, or on the edge of the shape.
+
+The process involves scan conversion — examining each row of pixels and determining which ones intersect with the shape. For filled shapes, pixels inside the shape are filled. For stroked shapes, pixels near the edge are filled based on the stroke width.
+
+## Anti-aliasing
+
+The problem with simple rasterization is aliasing — jagged edges that appear when smooth curves are converted to pixels. Anti-aliasing solves this by using partial pixel coverage. Instead of pixels being either fully on or fully off, pixels on edges can be partially filled, creating smooth transitions.
+
+Anti-aliasing works by calculating how much of each pixel is covered by the shape. A pixel that's 50% covered might be filled at 50% opacity, creating a smooth edge. This is why text and graphics look smooth on modern displays, even though they're made of discrete pixels.
+
+<SecondaryVisual title="Aliasing vs Anti-aliasing" caption="How anti-aliasing creates smooth edges from discrete pixels">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of rasterization as taking a photograph of a vector shape through a grid. The grid is the pixel array, and each cell in the grid captures part of the shape. Some cells are completely filled, some are empty, and some on the edges are partially filled. Anti-aliasing is like using a camera with better resolution — it captures more detail about what's happening at the edges.
+
+This mental model helps explain many aspects of rasterization. Why do curves look jagged at low resolution? Because the grid is too coarse to capture the smoothness. Why does anti-aliasing help? Because it captures partial coverage, creating the illusion of smoothness. Why is high-resolution rendering expensive? Because more pixels mean more calculations.
+
+## Why This Matters
+
+Understanding rasterization changes how you work with digital graphics. You begin to see that what looks like a smooth curve is actually a carefully calculated arrangement of pixels. You see that resolution matters — the same vector shape looks different at different resolutions because the rasterization process produces different pixel patterns.
+
+You also begin to understand the trade-offs. Higher resolution produces better quality but requires more computation. Anti-aliasing improves quality but adds complexity. Understanding these trade-offs helps you make informed decisions about rendering quality and performance.
+
+More fundamentally, understanding rasterization helps you see the relationship between mathematical precision and physical display. Vector graphics are mathematically perfect, but displays are physically limited. Rasterization is the bridge between these worlds, converting perfect mathematics into imperfect but visible pixels.
+
+<ClosingInsight>
+Rasterization reveals that digital display is always an approximation. Even the smoothest curves become discrete pixels, and anti-aliasing is the technique that makes this approximation acceptable by creating the illusion of smoothness.
+</ClosingInsight>

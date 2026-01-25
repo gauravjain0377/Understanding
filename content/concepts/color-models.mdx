@@ -1,0 +1,68 @@
+---
+title: "Color Models"
+description: "Different ways of representing color — RGB for screens, CMYK for print, and why the difference matters"
+category: "Pixels & Color"
+domain: "pixels-color"
+related: ["color-spaces", "how-screens-work"]
+---
+
+Color can be represented in different ways depending on how it's produced. RGB (Red, Green, Blue) is used for screens that emit light, while CMYK (Cyan, Magenta, Yellow, Black) is used for print that reflects light. Understanding color models reveals why colors look different on screens versus paper, and why different models exist for different purposes.
+
+<PrimaryVisual title="Additive vs Subtractive Color" caption="How RGB and CMYK represent color differently" diagramId="color-models">
+  <ColorModelsDiagram />
+</PrimaryVisual>
+
+Color models define how colors are represented numerically. RGB is an additive model — combining red, green, and blue light creates colors. CMYK is a subtractive model — combining cyan, magenta, yellow, and black ink absorbs light to create colors. The choice of model depends on how color is produced.
+
+Understanding color models reveals why colors don't always translate directly between screens and print, and why different models are needed for different media.
+
+## RGB: Additive Color
+
+RGB is used for displays that emit light:
+
+- **Red, Green, Blue**: Primary colors of light
+- **Additive**: Combining colors adds light, creating brighter colors
+- **Black**: Absence of all light (0, 0, 0)
+- **White**: All colors at maximum (255, 255, 255)
+
+RGB works because screens emit light. Combining red, green, and blue light creates the full spectrum of visible colors. This is why RGB is used for computer monitors, TVs, and phone screens.
+
+## CMYK: Subtractive Color
+
+CMYK is used for printing that reflects light:
+
+- **Cyan, Magenta, Yellow, Black**: Primary colors of ink
+- **Subtractive**: Combining colors absorbs light, creating darker colors
+- **White**: Absence of all ink (paper color)
+- **Black**: All colors combined (or pure black ink)
+
+CMYK works because ink absorbs light. Combining cyan, magenta, and yellow ink absorbs different wavelengths, creating colors through subtraction. Black (K) is added because combining CMY doesn't create true black.
+
+## Why Models Matter
+
+Different color models are needed because:
+
+- **Physical difference**: Screens emit light; print reflects light
+- **Color gamut**: Each model can represent different ranges of colors
+- **Conversion**: Converting between models can lose color information
+- **Purpose**: Each model is optimized for its medium
+
+Understanding these differences helps explain why colors don't always match between screens and print, and why color management is important.
+
+## The Mental Model
+
+Think of color models as different languages for describing color. RGB describes color in terms of light emission — "how much red, green, and blue light." CMYK describes color in terms of light absorption — "how much cyan, magenta, yellow, and black ink." They describe the same colors but in different ways, just as different languages describe the same concepts.
+
+This mental model helps explain why conversion is necessary and why it can be lossy. Just as translating between languages can lose nuance, converting between color models can lose color information. And just as some concepts are easier to express in some languages, some colors are easier to represent in some models.
+
+## Why This Matters
+
+Understanding color models changes how you think about color in software. You begin to see that color representation depends on the medium, and that RGB and CMYK serve different purposes. You understand why colors don't always match between screens and print, and why color management is important.
+
+You also begin to appreciate that color models are tools. Each model is designed for a specific purpose — RGB for displays, CMYK for print, HSL for design. Understanding which model to use and when helps you work with color effectively.
+
+More fundamentally, understanding color models reveals that color representation is contextual. The same color can be represented differently depending on how it's produced, and understanding these differences is essential for working with color across different media.
+
+<ClosingInsight>
+Color models reveal that color representation is contextual. RGB and CMYK serve different purposes — additive color for screens, subtractive color for print — and understanding these differences is essential for working with color across different media.
+</ClosingInsight>

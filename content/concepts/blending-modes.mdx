@@ -1,0 +1,55 @@
+---
+title: "Blending Modes"
+description: "How colors combine when layers overlap — the mathematical operations that create visual effects"
+category: "Pixels & Color"
+domain: "pixels-color"
+related: ["color-spaces", "contrast-perception"]
+---
+
+<PrimaryVisual title="Color Blending" caption="How different blending modes combine colors mathematically" diagramId="blending-modes">
+  <BlendingModesDiagram />
+</PrimaryVisual>
+
+Blending modes are the mathematical operations that determine how colors combine when layers overlap in digital images. They're used everywhere — in photo editing, graphic design, and user interfaces — yet most people don't understand how they actually work.
+
+Understanding blending modes changes how you think about digital compositing, visual effects, and the relationship between mathematical operations and visual results.
+
+## The Fundamental Operation
+
+A blending mode is a function that takes two colors — a base color and a blend color — and produces a result color. Different blending modes use different mathematical operations: some add colors, some multiply them, some use more complex formulas.
+
+The simplest blending mode is "normal" or "alpha blending" — it simply mixes the two colors based on the opacity of the top layer. But other modes create different effects by using different mathematical relationships between the colors.
+
+## Common Blending Modes
+
+Multiply darkens the image by multiplying color values together. Screen lightens by inverting, multiplying, and inverting again. Overlay combines multiply and screen, darkening dark areas and lightening light areas. These modes create effects that would be difficult to achieve with simple opacity changes.
+
+Each blending mode has a specific mathematical formula. Understanding these formulas helps you predict what effect a blending mode will have, and choose the right one for the visual result you want.
+
+## Why Blending Modes Matter
+
+Blending modes are essential for digital compositing. They allow you to combine images in ways that look natural, or create effects that would be impossible with simple layering. They're used in photo editing to adjust colors, in graphic design to create visual effects, and in user interfaces to create depth and hierarchy.
+
+Understanding blending modes also helps you understand how digital images work. Images aren't just collections of pixels — they're layers that can be combined in sophisticated ways. Blending modes are the tools that make this combination possible.
+
+<SecondaryVisual title="Mode Comparison" caption="How different blending modes affect the same colors">
+  <ScreenGridDiagram />
+</SecondaryVisual>
+
+## The Mental Model
+
+Think of blending modes as different ways of mixing paint. Normal mode is like placing transparent paint on top. Multiply is like mixing dark paints — the result is always darker. Screen is like mixing light paints — the result is always lighter. Overlay is like selectively darkening and lightening based on the underlying color.
+
+This mental model helps explain why different blending modes produce different results. They're not arbitrary — they're based on mathematical relationships that correspond to how we think about color mixing.
+
+## Why This Matters
+
+Understanding blending modes changes how you work with digital images. You begin to see that compositing isn't just about layering — it's about choosing the right mathematical operation to achieve the visual effect you want. You see that the same two colors can produce very different results depending on the blending mode.
+
+You also begin to understand the relationship between mathematics and visual effects. What looks like artistic intuition is often mathematical precision. Understanding the math behind blending modes helps you use them more effectively and predict their results.
+
+More fundamentally, understanding blending modes helps you see that digital images are computational objects. They're not just visual — they're mathematical, and the operations you perform on them are mathematical operations that produce visual results.
+
+<ClosingInsight>
+Blending modes reveal that visual effects are mathematical operations. The way colors combine isn't arbitrary — it's the result of specific formulas that create predictable, controllable visual results.
+</ClosingInsight>
