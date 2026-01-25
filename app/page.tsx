@@ -46,13 +46,13 @@ export default function Home() {
           <ProgressiveReveal>
             <p className="font-reading text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto text-center text-text-primary">
               Have you ever wondered how a screen displays an image, or how code becomes execution? 
-              Perhaps you{'\''}ve questioned why some interfaces feel instant while others lag, or how 
+              Perhaps you&apos;ve questioned why some interfaces feel instant while others lag, or how 
               abstractions both simplify and complicate our work.
             </p>
           </ProgressiveReveal>
           <ProgressiveReveal>
             <p className="font-reading text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto text-center text-text-secondary">
-              This is not a tutorial or a guide. It{'\''}s a reference manual that explains how the 
+              This is not a tutorial or a guide. It&apos;s a reference manual that explains how the 
               things you use every day actually work. Each concept is explored deeply, with visual 
               explanations and mental models that help you understand systems, not just use them.
             </p>
