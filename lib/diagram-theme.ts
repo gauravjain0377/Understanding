@@ -37,7 +37,7 @@ export const OPACITY = {
 
 // Animation timing (calm, readable, not aggressive)
 export const ANIMATION = {
-  stepDuration: 2500,      // Default duration per step (ms)
+  stepDuration: 2200,      // Default duration per step (ms) - medium speed, ~2.2 seconds
   transitionDuration: 700,  // Transition between steps (ms)
   easing: 'ease-out',      // Calm easing, no bounce
 } as const

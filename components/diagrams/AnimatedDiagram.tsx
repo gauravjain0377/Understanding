@@ -24,7 +24,7 @@ export interface AnimatedDiagramProps {
 
 export default function AnimatedDiagram({
   steps,
-  stepDuration = ANIMATION.stepDuration, // Use theme default: 2500ms for calm animations
+  stepDuration = ANIMATION.stepDuration, // Use theme default: 2200ms for medium speed animations
   size = 'primary',
   onStepChange,
   className = '',
@@ -79,49 +79,44 @@ export default function AnimatedDiagram({
     setPlaybackState('idle')
   }, [])
 
-  // Auto-play continuously when diagram enters viewport (always enabled)
+  // Auto-play continuously when diagram mounts (always running 24/7)
   useEffect(() => {
-    const container = document.querySelector(`[data-diagram-id="${id}"]`)
-    if (!container) return
-
-    let timer: NodeJS.Timeout | null = null
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && playbackState === 'idle') {
-            // Small delay to ensure smooth entry
-            timer = setTimeout(() => {
-              start()
-            }, 600)
-          } else if (!entry.isIntersecting && playbackState === 'playing') {
-            // Pause when out of viewport to save resources
-            pause()
-          }
-        })
-      },
-      {
-        threshold: 0.25, // Trigger when 25% of diagram is visible
-        rootMargin: '50px', // Start slightly before fully visible
-      }
-    )
-
-    observer.observe(container)
-
-    return () => {
-      observer.disconnect()
-      if (timer) clearTimeout(timer)
-    }
-  }, [playbackState, start, pause, id])
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
+    // Start animation immediately when component mounts
+    const timer = setTimeout(() => {
+      setPlaybackState('playing')
+      setCurrentStep(0)
+      onStepChange?.(0)
+      
+      // Clear any existing interval
       if (intervalRef.current) {
         clearInterval(intervalRef.current)
       }
+      
+      // Set up interval for continuous looping - runs forever
+      intervalRef.current = setInterval(() => {
+        setCurrentStep((prev) => {
+          if (prev < steps.length - 1) {
+            const next = prev + 1
+            onStepChange?.(next)
+            return next
+          } else {
+            // Loop back to beginning for continuous animation
+            onStepChange?.(0)
+            return 0
+          }
+        })
+      }, actualStepDuration)
+    }, 300) // Small delay for smooth initial render
+
+    return () => {
+      if (timer) clearTimeout(timer)
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // Run only once on mount - actualStepDuration and steps are stable
 
 
   // Determine step states

@@ -9,8 +9,8 @@ export default function CognitiveLoadDiagram() {
       label: 'Low Cognitive Load',
       render: (isActive) => (
         <svg width="100%" height="100%" viewBox="0 0 900 500" className="overflow-visible">
-          <circle cx="450" cy="250" r="100" fill={isActive ? '#5B8FA3' : '#E5E5E5'} className="transition-all duration-500" />
-          <text x="450" y="260" textAnchor="middle" fontSize="16" fill={isActive ? '#1A1A1A' : '#4A4A4A'} fontWeight="600" className="font-ui">User</text>
+          <circle cx="450" cy="250" r="100" fill={isActive ? '#5B8FA3' : '#FAFAF9'} stroke={isActive ? '#5B8FA3' : '#1A1A1A'} strokeWidth="2" className="transition-all duration-500" />
+          <text x="450" y="260" textAnchor="middle" fontSize="16" fill={isActive ? '#FFFFFF' : '#1A1A1A'} fontWeight="600" className="font-ui">User</text>
           <rect x="200" y="100" width="120" height="60" rx="4" fill={isActive ? '#FAFAF9' : '#FAFAF9'} stroke={isActive ? '#5B8FA3' : '#E5E5E5'} strokeWidth={isActive ? 2 : 1} className="transition-all duration-500" />
           <text x="260" y="135" textAnchor="middle" fontSize="12" fill={isActive ? '#1A1A1A' : '#4A4A4A'} className="font-ui">Task 1</text>
           <rect x="580" y="100" width="120" height="60" rx="4" fill={isActive ? '#FAFAF9' : '#FAFAF9'} stroke={isActive ? '#5B8FA3' : '#E5E5E5'} strokeWidth={isActive ? 2 : 1} className="transition-all duration-500" />
@@ -32,11 +32,10 @@ export default function CognitiveLoadDiagram() {
       render: (isActive, isPast) => (
         <svg width="100%" height="100%" viewBox="0 0 900 500" className="overflow-visible">
           <g opacity={isPast ? 0.4 : 1}>
-            <circle cx="450" cy="250" r="100" fill="#E5E5E5" />
-            <text x="450" y="260" textAnchor="middle" fontSize="16" fill="#4A4A4A" fontWeight="600" className="font-ui">User</text>
+            <circle cx="450" cy="250" r="100" fill="#FAFAF9" stroke="#1A1A1A" strokeWidth="2" />
           </g>
-          <circle cx="450" cy="250" r="100" fill={isActive ? '#DC2626' : '#E5E5E5'} className="transition-all duration-500" />
-          <text x="450" y="260" textAnchor="middle" fontSize="16" fill={isActive ? '#FFFFFF' : '#4A4A4A'} fontWeight="600" className="font-ui">User</text>
+          <circle cx="450" cy="250" r="100" fill={isActive ? '#DC2626' : '#FAFAF9'} stroke={isActive ? '#DC2626' : '#1A1A1A'} strokeWidth="2" className="transition-all duration-500" />
+          <text x="450" y="260" textAnchor="middle" fontSize="16" fill={isActive ? '#FFFFFF' : '#1A1A1A'} fontWeight="600" className="font-ui">User</text>
           <rect x="100" y="80" width="100" height="50" rx="4" fill={isActive ? '#FAFAF9' : '#FAFAF9'} stroke={isActive ? '#DC2626' : '#E5E5E5'} strokeWidth={isActive ? 2 : 1} className="transition-all duration-500" />
           <rect x="250" y="80" width="100" height="50" rx="4" fill={isActive ? '#FAFAF9' : '#FAFAF9'} stroke={isActive ? '#DC2626' : '#E5E5E5'} strokeWidth={isActive ? 2 : 1} className="transition-all duration-500" />
           <rect x="550" y="80" width="100" height="50" rx="4" fill={isActive ? '#FAFAF9' : '#FAFAF9'} stroke={isActive ? '#DC2626' : '#E5E5E5'} strokeWidth={isActive ? 2 : 1} className="transition-all duration-500" />
