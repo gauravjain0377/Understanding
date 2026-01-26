@@ -1,0 +1,71 @@
+/**
+ * Diagram Theme Constants
+ * 
+ * Defines the visual design system for all diagrams following
+ * engineering blueprint aesthetics: single ink color, technical typography,
+ * clear line hierarchies, and calm animations.
+ */
+
+// Single ink color - soft blue for all diagram elements
+export const DIAGRAM_INK = '#4A7C8F'
+
+// Background color - off-white
+export const DIAGRAM_BACKGROUND = '#FBFBF9'
+
+// Line weight hierarchy
+export const LINE_WEIGHTS = {
+  primary: 2.5,    // Main outlines and structural elements
+  secondary: 1.5,  // Internal details and connections
+  guide: 0.5,      // Dashed guides and reference lines
+} as const
+
+// Opacity levels for animation states
+export const OPACITY = {
+  active: 1.0,     // Currently active step
+  past: 0.4,       // Previously shown steps
+  future: 0.15,    // Upcoming steps
+  muted: 0.2,      // Inactive elements
+} as const
+
+// Animation timing (calm, readable, not aggressive)
+export const ANIMATION = {
+  stepDuration: 2500,      // Default duration per step (ms)
+  transitionDuration: 700,  // Transition between steps (ms)
+  easing: 'ease-out',      // Calm easing, no bounce
+} as const
+
+// Typography settings
+export const TYPOGRAPHY = {
+  fontFamily: 'var(--font-technical)', // JetBrains Mono
+  fontSize: {
+    label: 14,      // Standard label size
+    large: 16,      // Important labels
+    small: 12,     // Secondary labels
+  },
+  letterSpacing: 0.1,  // Uppercase letter spacing
+  fontWeight: {
+    normal: 400,
+    medium: 500,
+    bold: 600,
+  },
+} as const
+
+// Helper functions for color with opacity
+export const getInkColor = (opacity: number = 1): string => {
+  const r = parseInt(DIAGRAM_INK.slice(1, 3), 16)
+  const g = parseInt(DIAGRAM_INK.slice(3, 5), 16)
+  const b = parseInt(DIAGRAM_INK.slice(5, 7), 16)
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`
+}
+
+// Helper to get color for animation state
+export const getStateColor = (
+  isActive: boolean,
+  isPast: boolean,
+  isFuture: boolean
+): string => {
+  if (isActive) return getInkColor(OPACITY.active)
+  if (isPast) return getInkColor(OPACITY.past)
+  if (isFuture) return getInkColor(OPACITY.future)
+  return getInkColor(OPACITY.muted)
+}

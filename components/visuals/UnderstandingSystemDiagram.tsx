@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { DIAGRAM_INK, DIAGRAM_BACKGROUND, LINE_WEIGHTS, OPACITY, getInkColor } from '@/lib/diagram-theme'
 
 export default function UnderstandingSystemDiagram() {
   const [mounted, setMounted] = useState(false)
@@ -14,7 +15,7 @@ export default function UnderstandingSystemDiagram() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Animate nodes appearing one by one
+            // Animate nodes appearing one by one with calm timing
             let nodeIndex = 0
             const interval = setInterval(() => {
               setActiveNodes(prev => new Set([...prev, nodeIndex]))
@@ -22,7 +23,7 @@ export default function UnderstandingSystemDiagram() {
               if (nodeIndex >= 8) {
                 clearInterval(interval)
               }
-            }, 200)
+            }, 400) // Slower, calmer animation
             
             observer.unobserve(entry.target)
             return () => clearInterval(interval)
@@ -39,16 +40,39 @@ export default function UnderstandingSystemDiagram() {
     return () => observer.disconnect()
   }, [])
 
-  // Central node and surrounding concept nodes
+  // Central node position
+  const centerX = 400
+  const centerY = 250
+  const radius = 180 // Distance from center to surrounding nodes
+  
+  // Calculate evenly spaced positions around the circle
+  // 7 nodes around the center, evenly distributed
+  const surroundingNodes = [
+    { id: 1, label: 'CONCEPTS' },
+    { id: 2, label: 'DOMAINS' },
+    { id: 3, label: 'VISUALS' },
+    { id: 4, label: 'SYSTEMS' },
+    { id: 5, label: 'MENTAL MODELS' },
+    { id: 6, label: 'EXPLORATION' },
+    { id: 7, label: 'CLARITY' },
+  ]
+  
+  // Calculate positions evenly spaced around circle
   const nodes = [
-    { id: 0, label: 'UNDERSTANDING', x: 400, y: 250, isCentral: true },
-    { id: 1, label: 'CONCEPTS', x: 200, y: 150 },
-    { id: 2, label: 'DOMAINS', x: 600, y: 150 },
-    { id: 3, label: 'VISUALS', x: 150, y: 350 },
-    { id: 4, label: 'SYSTEMS', x: 650, y: 350 },
-    { id: 5, label: 'MENTAL MODELS', x: 100, y: 250, radius: 60 },
-    { id: 6, label: 'EXPLORATION', x: 700, y: 250 },
-    { id: 7, label: 'CLARITY', x: 400, y: 100 },
+    { id: 0, label: 'UNDERSTANDING', x: centerX, y: centerY, isCentral: true },
+    ...surroundingNodes.map((node, index) => {
+      // Start from top (12 o'clock) and distribute evenly
+      // Offset by -90 degrees to start from top
+      const angle = (index * (2 * Math.PI) / surroundingNodes.length) - (Math.PI / 2)
+      const x = centerX + radius * Math.cos(angle)
+      const y = centerY + radius * Math.sin(angle)
+      return {
+        ...node,
+        x: Math.round(x),
+        y: Math.round(y),
+        radius: node.label === 'MENTAL MODELS' ? 60 : undefined, // Larger radius for longer text
+      }
+    }),
   ]
 
   const connections = [
@@ -98,7 +122,7 @@ export default function UnderstandingSystemDiagram() {
             >
               <path
                 d="M 0 0 L 8 4 L 0 8"
-                fill="rgba(74, 124, 143, 0.3)"
+                fill={getInkColor(OPACITY.past)}
               />
             </marker>
           </defs>
@@ -116,12 +140,11 @@ export default function UnderstandingSystemDiagram() {
                 y1={fromNode.y}
                 x2={toNode.x}
                 y2={toNode.y}
-                stroke={isActive ? 'rgba(74, 124, 143, 0.3)' : 'rgba(232, 232, 230, 0.5)'}
-                strokeWidth={isActive ? 1.5 : 1}
+                stroke={isActive ? getInkColor(OPACITY.active) : getInkColor(OPACITY.future)}
+                strokeWidth={isActive ? LINE_WEIGHTS.secondary : LINE_WEIGHTS.guide}
                 markerEnd="url(#arrow-understanding)"
-                className="transition-all duration-700 ease-out"
                 style={{
-                  opacity: isActive ? 1 : 0.3,
+                  transition: `stroke ${700}ms ease-out`,
                   transitionDelay: `${idx * 100}ms`,
                 }}
               />
@@ -134,6 +157,17 @@ export default function UnderstandingSystemDiagram() {
             const isCentral = node.isCentral
             const radius = (node as any).radius || (isCentral ? 70 : 50)
             
+            // Use single ink color with opacity variations
+            const fillColor = isActive 
+              ? (isCentral ? getInkColor(OPACITY.active) : getInkColor(0.1))
+              : getInkColor(0.05)
+            const strokeColor = isActive 
+              ? getInkColor(OPACITY.active) 
+              : getInkColor(OPACITY.future)
+            const textColor = isActive 
+              ? (isCentral ? DIAGRAM_BACKGROUND : getInkColor(OPACITY.active))
+              : getInkColor(OPACITY.future)
+            
             return (
               <g key={node.id}>
                 {/* Node circle */}
@@ -141,13 +175,13 @@ export default function UnderstandingSystemDiagram() {
                   cx={node.x}
                   cy={node.y}
                   r={radius}
-                  fill={isActive ? (isCentral ? '#4A7C8F' : 'rgba(74, 124, 143, 0.1)') : 'rgba(232, 232, 230, 0.3)'}
-                  stroke={isActive ? '#4A7C8F' : 'rgba(232, 232, 230, 0.5)'}
-                  strokeWidth={isActive ? 2.5 : 1.5}
-                  className="transition-all duration-700 ease-out"
+                  fill={fillColor}
+                  stroke={strokeColor}
+                  strokeWidth={isActive ? LINE_WEIGHTS.primary : LINE_WEIGHTS.secondary}
                   style={{
                     opacity: mounted ? 1 : 0,
-                    transform: `scale(${isActive ? 1 : 0.8})`,
+                    transition: `fill ${700}ms ease-out, stroke ${700}ms ease-out`,
+                    transform: `scale(${isActive ? 1 : 0.9})`,
                     transformOrigin: `${node.x}px ${node.y}px`,
                   }}
                 />
@@ -158,11 +192,14 @@ export default function UnderstandingSystemDiagram() {
                   y={node.y + (isCentral ? 0 : 6)}
                   textAnchor="middle"
                   fontSize={isCentral ? 16 : 13}
-                  fill={isActive ? (isCentral ? '#FAFAF9' : '#4A7C8F') : 'rgba(90, 90, 90, 0.5)'}
+                  fill={textColor}
+                  fontFamily="var(--font-technical)"
                   fontWeight={isCentral ? 600 : 500}
-                  className="font-technical uppercase tracking-wider transition-all duration-700"
+                  letterSpacing="0.1em"
+                  textTransform="uppercase"
                   style={{
                     opacity: mounted ? 1 : 0,
+                    transition: `fill ${700}ms ease-out`,
                   }}
                 >
                   {node.label}

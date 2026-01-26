@@ -19,8 +19,8 @@
   body {
     @apply bg-background text-text-primary;
     font-family: var(--font-reading);
-    font-size: 21px; /* Premium base font size */
-    line-height: 1.85; /* More generous line height for calm reading */
+    font-size: 18px; /* Comfortable base font size */
+    line-height: 1.75; /* More generous line height for calm reading */
     letter-spacing: 0.015em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -29,15 +29,15 @@
 
   @media (min-width: 768px) {
     body {
-      font-size: 23px; /* Even larger on desktop */
-      line-height: 1.9;
+      font-size: 19px; /* Slightly larger on tablet */
+      line-height: 1.8;
     }
   }
 
   @media (min-width: 1024px) {
     body {
-      font-size: 24px; /* Maximum readability on large screens */
-      line-height: 1.95;
+      font-size: 20px; /* Comfortable readability on large screens */
+      line-height: 1.85;
     }
   }
 
@@ -239,6 +239,36 @@
     background-image: 
       radial-gradient(circle, rgba(74, 124, 143, 0.08) 1px, transparent 1px);
     background-size: 16px 16px;
+    background-position: 0 0;
+  }
+
+  /* Diagram Typography System */
+  .diagram-label {
+    font-family: var(--font-technical);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    fill: #4A7C8F;
+  }
+
+  .diagram-label-large {
+    font-size: 16px;
+  }
+
+  .diagram-label-normal {
+    font-size: 14px;
+  }
+
+  .diagram-label-small {
+    font-size: 12px;
+  }
+
+  /* Diagram container background with technical grid */
+  .diagram-container {
+    background-color: #FBFBF9;
+    background-image: 
+      radial-gradient(circle, rgba(74, 124, 143, 0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
     background-position: 0 0;
   }
 }

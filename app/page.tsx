@@ -35,7 +35,7 @@ export default function Home() {
               | UNDERSTANDING |
             </h1>
             <p className="font-reading text-xl md:text-2xl lg:text-3xl text-text-secondary/90 leading-relaxed text-center max-w-3xl mx-auto font-light">
-              A thinking space for learning how software actually works — 
+              A thinking space for learning how software actually works, 
               conceptually, visually, and intuitively.
             </p>
           </div>

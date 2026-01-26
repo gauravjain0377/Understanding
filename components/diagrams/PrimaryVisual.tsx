@@ -1,8 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import DiagramControls from './DiagramControls'
-import { useDiagramControls } from './useDiagramControls'
 import ProgressiveReveal from '../ProgressiveReveal'
 
 export interface PrimaryVisualProps {
@@ -20,8 +17,6 @@ export default function PrimaryVisual({
   className = '',
   diagramId,
 }: PrimaryVisualProps) {
-  const controls = useDiagramControls(diagramId)
-
   return (
     <ProgressiveReveal>
       <section 
@@ -35,25 +30,11 @@ export default function PrimaryVisual({
           </h2>
         )}
 
-        {/* Large diagram container - ensure it fits in viewport */}
-        <div className="flex-1 flex flex-col items-center justify-center bg-gradient-to-b from-background via-subtle/30 to-background border-t border-b border-border/40 py-8 md:py-12 lg:py-16 w-full">
-          <div className="w-full max-w-[95vw] md:max-w-[90vw] lg:max-w-[min(85vw,1400px)] xl:max-w-[min(80vw,1600px)]" style={{ height: 'min(75vh, 800px)' }}>
+        {/* Large diagram container with technical grid background */}
+        <div className="flex-1 flex flex-col items-center justify-center diagram-container border-t border-b border-border/40 py-8 md:py-12 lg:py-16 w-full">
+          <div className="w-full max-w-[95vw] md:max-w-[90vw] lg:max-w-[min(85vw,1400px)] xl:max-w-[min(80vw,1600px)] pb-20" style={{ height: 'min(75vh, 800px)' }}>
             {children}
           </div>
-          
-          {/* Diagram Controls */}
-          {controls && (
-            <div className="mt-6 flex justify-center">
-              <DiagramControls
-                playbackState={controls.playbackState}
-                onStart={controls.start}
-                onPause={controls.pause}
-                onRestart={controls.restart}
-                currentStep={controls.currentStep}
-                totalSteps={controls.totalSteps}
-              />
-            </div>
-          )}
         </div>
 
         {caption && (

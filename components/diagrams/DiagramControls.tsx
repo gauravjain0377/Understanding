@@ -52,14 +52,14 @@ export default function DiagramControls({
   return (
     <div 
       ref={containerRef}
-      className={`flex items-center gap-3 font-ui text-sm ${className}`}
+      className={`flex items-center gap-4 font-ui text-sm ${className}`}
       role="group"
       aria-label="Diagram playback controls"
     >
       {showStart && (
         <button
           onClick={onStart}
-          className="px-4 py-2 border border-border bg-background text-text-primary hover:bg-accent hover:text-white hover:border-accent transition-colors duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+          className="px-4 py-2 border border-border bg-background text-text-primary hover:bg-accent hover:text-white hover:border-accent transition-colors duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 whitespace-nowrap"
           aria-label="Start animation"
         >
           Start
@@ -69,7 +69,7 @@ export default function DiagramControls({
       {showPause && (
         <button
           onClick={onPause}
-          className="px-4 py-2 border border-border bg-background text-text-primary hover:bg-accent hover:text-white hover:border-accent transition-colors duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+          className="px-4 py-2 border border-border bg-background text-text-primary hover:bg-accent hover:text-white hover:border-accent transition-colors duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 whitespace-nowrap"
           aria-label="Pause animation"
         >
           Pause
@@ -78,14 +78,14 @@ export default function DiagramControls({
 
       <button
         onClick={onRestart}
-        className="px-4 py-2 border border-border bg-background text-text-secondary hover:text-text-primary hover:border-accent transition-colors duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+        className="px-4 py-2 border border-border bg-background text-text-secondary hover:text-text-primary hover:border-accent transition-colors duration-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 whitespace-nowrap"
         aria-label="Restart animation"
       >
         Restart
       </button>
 
       {totalSteps > 0 && currentStep >= 0 && (
-        <span className="ml-auto text-text-secondary text-xs">
+        <span className="ml-4 text-text-secondary text-xs whitespace-nowrap">
           {currentStep + 1} / {totalSteps}
         </span>
       )}

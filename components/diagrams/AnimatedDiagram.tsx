@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { ANIMATION, OPACITY } from '@/lib/diagram-theme'
 
-export type PlaybackState = 'idle' | 'playing' | 'paused' | 'completed'
+export type PlaybackState = 'idle' | 'playing'
 
 export interface DiagramStep {
   id: string
@@ -13,23 +14,19 @@ export interface DiagramStep {
 
 export interface AnimatedDiagramProps {
   steps: DiagramStep[]
-  autoPlay?: boolean
-  stepDuration?: number // Default duration for steps without custom duration (increased default for calm animations)
+  stepDuration?: number // Default duration for steps (calm, readable animations)
   size?: 'primary' | 'secondary'
   onStepChange?: (step: number) => void
-  onStateChange?: (state: PlaybackState) => void
   className?: string
-  diagramId?: string // Optional explicit diagram ID for control integration
+  diagramId?: string // Optional explicit diagram ID
   animationSpeed?: 'slow' | 'normal' | 'fast' // Speed modifier for dense diagrams
 }
 
 export default function AnimatedDiagram({
   steps,
-  autoPlay = true,
-  stepDuration = 2000, // Default to 2 seconds for calm, readable animations
+  stepDuration = ANIMATION.stepDuration, // Use theme default: 2500ms for calm animations
   size = 'primary',
   onStepChange,
-  onStateChange,
   className = '',
   diagramId,
   animationSpeed = 'normal',
@@ -41,12 +38,6 @@ export default function AnimatedDiagram({
   const [currentStep, setCurrentStep] = useState<number>(-1)
   const [playbackState, setPlaybackState] = useState<PlaybackState>('idle')
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
-  const hasAutoPlayedRef = useRef(false)
-
-  const updateState = useCallback((newState: PlaybackState) => {
-    setPlaybackState(newState)
-    onStateChange?.(newState)
-  }, [onStateChange])
 
   const advanceStep = useCallback(() => {
     if (currentStep < steps.length - 1) {
@@ -61,7 +52,7 @@ export default function AnimatedDiagram({
   }, [currentStep, steps.length, onStepChange])
 
   const start = useCallback(() => {
-    updateState('playing')
+    setPlaybackState('playing')
     
     // Start immediately if we're at the beginning or completed
     if (currentStep === -1 || currentStep >= steps.length - 1) {
@@ -78,30 +69,18 @@ export default function AnimatedDiagram({
     intervalRef.current = setInterval(() => {
       advanceStep()
     }, actualStepDuration)
-  }, [currentStep, advanceStep, actualStepDuration, updateState, steps.length, onStepChange])
+  }, [currentStep, advanceStep, actualStepDuration, steps.length, onStepChange])
 
   const pause = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
       intervalRef.current = null
     }
-    updateState('paused')
-  }, [updateState])
+    setPlaybackState('idle')
+  }, [])
 
-  const restart = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-      intervalRef.current = null
-    }
-    setCurrentStep(-1)
-    updateState('idle')
-    onStepChange?.(-1)
-  }, [updateState, onStepChange])
-
-  // Auto-play continuously when diagram enters viewport if enabled
+  // Auto-play continuously when diagram enters viewport (always enabled)
   useEffect(() => {
-    if (!autoPlay) return
-
     const container = document.querySelector(`[data-diagram-id="${id}"]`)
     if (!container) return
 
@@ -133,39 +112,7 @@ export default function AnimatedDiagram({
       observer.disconnect()
       if (timer) clearTimeout(timer)
     }
-  }, [autoPlay, playbackState, start, pause, id])
-
-  // Listen for external control events
-  useEffect(() => {
-    const container = document.querySelector(`[data-diagram-id="${id}"]`)
-    if (!container) return
-
-    const handleStart = () => {
-      if (playbackState !== 'playing') {
-        start()
-      }
-    }
-
-    const handlePause = () => {
-      if (playbackState === 'playing') {
-        pause()
-      }
-    }
-
-    const handleRestart = () => {
-      restart()
-    }
-
-    container.addEventListener('diagram-start', handleStart)
-    container.addEventListener('diagram-pause', handlePause)
-    container.addEventListener('diagram-restart', handleRestart)
-
-    return () => {
-      container.removeEventListener('diagram-start', handleStart)
-      container.removeEventListener('diagram-pause', handlePause)
-      container.removeEventListener('diagram-restart', handleRestart)
-    }
-  }, [playbackState, start, pause, restart, id])
+  }, [playbackState, start, pause, id])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -176,30 +123,6 @@ export default function AnimatedDiagram({
     }
   }, [])
 
-  // Handle custom step durations - removed as we use setInterval for continuous looping
-  // The interval handles all step transitions uniformly
-
-  // Emit events for external control
-  useEffect(() => {
-    const container = document.querySelector(`[data-diagram-id="${id}"]`)
-    if (container) {
-      const stateEvent = new CustomEvent('diagram-state-change', { detail: playbackState })
-      container.dispatchEvent(stateEvent)
-      
-      const stepEvent = new CustomEvent('diagram-step-change', { detail: currentStep })
-      container.dispatchEvent(stepEvent)
-    }
-  }, [playbackState, currentStep, id])
-
-  // Expose controls via data attribute (for parent components)
-  const controls = {
-    start,
-    pause,
-    restart,
-    playbackState,
-    currentStep,
-    totalSteps: steps.length,
-  }
 
   // Determine step states
   const getStepState = (index: number) => {
@@ -224,17 +147,21 @@ export default function AnimatedDiagram({
     <div 
       className={`relative ${sizeClasses} ${className}`}
       data-diagram-id={id}
-      data-diagram-controls={JSON.stringify(controls)}
     >
-      <div className="w-full h-full">
+      <div className="w-full h-full relative overflow-hidden">
         {steps.map((step, index) => {
           const { isActive, isPast, isFuture } = getStepState(index)
+          // Use theme opacity values for calm, technical appearance
+          const opacity = isActive ? OPACITY.active : isPast ? OPACITY.past : OPACITY.future
           return (
             <div
               key={step.id}
-              className={`transition-opacity duration-500 ${
-                isActive ? 'opacity-100' : isPast ? 'opacity-60' : 'opacity-30'
-              }`}
+              className="absolute inset-0 z-0"
+              style={{
+                opacity,
+                transition: `opacity ${ANIMATION.transitionDuration}ms ${ANIMATION.easing}`,
+                zIndex: isActive ? 10 : 0,
+              }}
             >
               {step.render(isActive, isPast, isFuture)}
             </div>
