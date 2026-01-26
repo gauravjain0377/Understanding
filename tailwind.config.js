@@ -49,12 +49,14 @@ module.exports = {
             p: {
               marginTop: '0',
               marginBottom: '2rem',
+              textAlign: 'justify',
             },
             '@media (min-width: 768px)': {
               fontSize: '22px',
               lineHeight: '1.85',
               p: {
                 marginBottom: '2.25rem',
+                textAlign: 'justify',
               },
             },
             '@media (min-width: 1024px)': {

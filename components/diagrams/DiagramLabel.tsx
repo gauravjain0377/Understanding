@@ -1,6 +1,6 @@
 'use client'
 
-import { DIAGRAM_INK, TYPOGRAPHY, getStateColor } from '@/lib/diagram-theme'
+import { DIAGRAM_INK, TYPOGRAPHY, getTextColor } from '@/lib/diagram-theme'
 
 export interface DiagramLabelProps {
   x: number
@@ -37,7 +37,7 @@ export default function DiagramLabel({
     ? TYPOGRAPHY.fontSize.small 
     : TYPOGRAPHY.fontSize.label
 
-  const color = getStateColor(isActive, isPast, isFuture)
+  const color = getTextColor(isActive, isPast, isFuture)
 
   return (
     <text

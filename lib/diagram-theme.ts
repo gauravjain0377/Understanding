@@ -12,11 +12,19 @@ export const DIAGRAM_INK = '#4A7C8F'
 // Background color - off-white
 export const DIAGRAM_BACKGROUND = '#FBFBF9'
 
+// Text colors - always dark for readability
+export const TEXT_COLORS = {
+  primary: '#1A1A1A',      // Dark text for active/past states
+  secondary: '#4A4A4A',    // Medium dark for secondary text
+  muted: '#6A6A6A',        // Slightly lighter but still readable
+  border: '#1A1A1A',       // Dark borders for visibility
+} as const
+
 // Line weight hierarchy
 export const LINE_WEIGHTS = {
-  primary: 2.5,    // Main outlines and structural elements
-  secondary: 1.5,  // Internal details and connections
-  guide: 0.5,      // Dashed guides and reference lines
+  primary: 4,    // Main outlines and structural elements (increased from 2.5)
+  secondary: 2.5,  // Internal details and connections (increased from 1.5)
+  guide: 1,      // Dashed guides and reference lines (increased from 0.5)
 } as const
 
 // Opacity levels for animation states
@@ -38,9 +46,9 @@ export const ANIMATION = {
 export const TYPOGRAPHY = {
   fontFamily: 'var(--font-technical)', // JetBrains Mono
   fontSize: {
-    label: 14,      // Standard label size
-    large: 16,      // Important labels
-    small: 12,     // Secondary labels
+    label: 20,      // Standard label size (increased from 14)
+    large: 24,      // Important labels (increased from 16)
+    small: 16,     // Secondary labels (increased from 12)
   },
   letterSpacing: 0.1,  // Uppercase letter spacing
   fontWeight: {
@@ -58,7 +66,7 @@ export const getInkColor = (opacity: number = 1): string => {
   return `rgba(${r}, ${g}, ${b}, ${opacity})`
 }
 
-// Helper to get color for animation state
+// Helper to get color for animation state (for shapes/lines)
 export const getStateColor = (
   isActive: boolean,
   isPast: boolean,
@@ -68,4 +76,26 @@ export const getStateColor = (
   if (isPast) return getInkColor(OPACITY.past)
   if (isFuture) return getInkColor(OPACITY.future)
   return getInkColor(OPACITY.muted)
+}
+
+// Helper to get text color - always dark for readability
+export const getTextColor = (
+  isActive: boolean,
+  isPast: boolean,
+  isFuture: boolean
+): string => {
+  if (isActive) return TEXT_COLORS.primary
+  if (isPast) return TEXT_COLORS.secondary
+  return TEXT_COLORS.muted // Even future text should be readable
+}
+
+// Helper to get border color - always visible
+export const getBorderColor = (
+  isActive: boolean,
+  isPast: boolean,
+  isFuture: boolean
+): string => {
+  if (isActive) return getInkColor(OPACITY.active)
+  if (isPast) return getInkColor(OPACITY.past)
+  return TEXT_COLORS.border // Future borders should be dark and visible
 }

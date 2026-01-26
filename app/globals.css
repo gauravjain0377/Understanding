@@ -115,6 +115,7 @@
     margin-bottom: 2.25rem; /* More generous spacing between paragraphs */
     max-width: 62ch; /* Optimal reading width for comfort */
     color: var(--text-primary);
+    text-align: justify; /* Justify text for clean alignment */
   }
 
   @media (min-width: 768px) {
