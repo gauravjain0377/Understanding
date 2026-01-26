@@ -79,8 +79,8 @@ export default function Home() {
                 .map((domain, index) => {
                   const domainConcepts = concepts.filter(c => c.domain === domain.id)
                   const conceptCount = domainConcepts.length
-                  // Link to concepts page (user can choose which concept to open)
-                  const href = '/concepts'
+                  // Link to concepts page with anchor to specific domain section
+                  const href = `/concepts#${domain.id}`
                   
                   return (
                     <ProgressiveReveal key={domain.id}>

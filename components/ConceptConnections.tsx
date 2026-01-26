@@ -34,7 +34,7 @@ export default function ConceptConnections({ relatedConcepts, currentSlug }: Con
 
   return (
     <aside
-      className={`hidden lg:block fixed right-8 md:right-20 lg:right-32 top-32 z-30 transition-opacity duration-300 ${
+      className={`hidden lg:block fixed right-8 md:right-20 lg:right-32 top-44 md:top-48 z-30 transition-opacity duration-300 ${
         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >

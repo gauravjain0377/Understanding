@@ -1,4 +1,5 @@
 import FocusMode from '@/components/FocusMode'
+import HashScrollHandler from '@/components/HashScrollHandler'
 
 export default function ConceptsLayout({
   children,
@@ -8,6 +9,7 @@ export default function ConceptsLayout({
   return (
     <>
       <FocusMode />
+      <HashScrollHandler />
       {children}
     </>
   )

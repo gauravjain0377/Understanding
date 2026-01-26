@@ -9,7 +9,7 @@ interface DomainSectionProps {
 
 export default function DomainSection({ domain, concepts }: DomainSectionProps) {
   return (
-    <section>
+    <section id={domain.id}>
       <div className="mb-8">
         <h2 className="text-2xl md:text-3xl font-reading font-normal mb-3">
           {domain.name}

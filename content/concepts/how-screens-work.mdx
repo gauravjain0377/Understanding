@@ -1,18 +1,20 @@
 ---
-title: "How Does a Screen Work?"
+title: "How Screens Work"
 description: "Understanding how millions of tiny lights create the images we see — the journey from digital data to visible light"
 category: "Pixels & Color"
 domain: "pixels-color"
 related: []
 ---
 
+<PrimaryVisual title="From Data to Light" caption="The journey from digital numbers to visible pixels on screen" diagramId="screen-flow">
+  <ScreenFlowDiagram />
+</PrimaryVisual>
+
 When you look at a screen, you're seeing millions of individual points of light, each one carefully controlled to create the illusion of a continuous image. This illusion — this transformation of digital data into visible light — is one of the most remarkable achievements of modern computing, yet we rarely think about how it actually works.
 
 Understanding screens changes how you think about digital images, interfaces, and the relationship between computation and perception.
 
 ## The Grid of Light
-
-<ScreenGridDiagram />
 
 A screen is, fundamentally, a grid. Not a grid of pixels in the abstract sense, but a physical grid of light-emitting elements arranged in rows and columns. Each element can be turned on or off, made brighter or dimmer, and given a color.
 
@@ -27,6 +29,10 @@ The journey from digital data to visible light involves several transformations.
 The graphics system takes these numbers and converts them into electrical signals. These signals travel through cables to the screen, where they're interpreted by the display controller. The controller knows which signal corresponds to which light in the grid, and it sends the appropriate electrical current to each one.
 
 But here's where it gets interesting: different types of screens convert electricity to light in different ways. An LCD screen uses liquid crystals that twist and untwist to control how much light from a backlight passes through. An OLED screen uses organic compounds that emit light directly when electricity flows through them. Each technology has different properties, different trade-offs, different ways of creating the same visual result.
+
+<SecondaryVisual title="Pixel Grid Detail" caption="A close-up view of how individual pixels combine to form images">
+  <ScreenGridDiagram />
+</SecondaryVisual>
 
 ## The Persistence of Vision
 
@@ -60,14 +66,6 @@ Think of a screen as a window into a digital world. The window has a fixed size 
 
 This mental model helps explain many things about how screens work. Why do games need powerful graphics cards? Because they're constantly recalculating what should be visible and updating millions of lights accordingly. Why do some interfaces feel laggy? Because the view isn't being updated quickly enough to match user actions. Why do high-resolution displays require more processing power? Because there are more lights to control, more data to process, more signals to send.
 
-## Why This Matters
-
-Understanding screens changes how you think about digital interfaces. You begin to see that every pixel is a decision — a decision about what color and brightness to show at that exact point in space and time. You see that smooth animation isn't magic — it's the result of carefully coordinated updates to thousands or millions of individual lights.
-
-You also begin to understand the constraints. Screens have limits — limits on resolution, limits on refresh rate, limits on color accuracy. Understanding these limits helps you design interfaces that work within them, that take advantage of what screens do well and avoid what they do poorly.
-
-More fundamentally, understanding screens helps you see the relationship between computation and perception. The screen is where abstract digital data becomes concrete visual experience. It's where the invisible world of computation becomes visible, where numbers become images, where algorithms become interfaces.
-
-The next time you look at a screen, pause for a moment. Consider the millions of individual lights, each one carefully controlled, each one updated many times per second, all working together to create the image you see. That image — that illusion of a continuous, dynamic world — is one of the most complex and elegant systems in computing.
-
-And it happens billions of times per day, on billions of screens, transforming digital data into visible reality.
+<ClosingInsight>
+Understanding screens reveals that every pixel is a decision — a decision about what color and brightness to show at that exact point in space and time. The screen is where abstract digital data becomes concrete visual experience, where numbers become images, where algorithms become interfaces.
+</ClosingInsight>

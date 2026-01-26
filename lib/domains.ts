@@ -7,6 +7,12 @@ export interface Domain {
 
 export const domains: Domain[] = [
   {
+    id: 'fundamentals',
+    name: 'Fundamentals',
+    description: 'Core concepts that underlie all software',
+    concepts: ['how-software-understands-input', 'what-state-really-means', 'why-async-systems-exist', 'between-click-and-result'],
+  },
+  {
     id: 'pixels-color',
     name: 'Pixels & Color',
     description: 'How screens display images, color spaces, and visual perception',
@@ -65,12 +71,6 @@ export const domains: Domain[] = [
     name: 'Abstractions & Complexity',
     description: 'What abstraction is, leaky abstractions, and emergent behavior',
     concepts: ['abstractions', 'leaky-abstractions', 'emergent-behavior'],
-  },
-  {
-    id: 'fundamentals',
-    name: 'Fundamentals',
-    description: 'Core concepts that underlie all software',
-    concepts: ['how-software-understands-input', 'what-state-really-means', 'why-async-systems-exist', 'between-click-and-result'],
   },
   {
     id: 'misc',

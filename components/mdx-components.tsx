@@ -42,16 +42,13 @@ import FramesDiagram from './visuals/FramesDiagram'
 import RegularExpressionsDiagram from './visuals/RegularExpressionsDiagram'
 import ColorModelsDiagram from './visuals/ColorModelsDiagram'
 
-/** Default MDX components for standard HTML elements. Required because we pass a custom
- * components map to MDXRemote, which replaces (not merges) the runtime map. Without these,
- * lookups for pre, code, ul, etc. return undefined → "Element type is invalid: got undefined".
- * @see https://mdxjs.com/table-of-components/
- */
+
 const defaultMdxComponents: MDXComponents = {
   a: 'a',
   blockquote: 'blockquote',
   br: 'br',
   code: 'code',
+  div: 'div',
   em: 'em',
   h1: 'h1',
   h2: 'h2',
@@ -65,6 +62,7 @@ const defaultMdxComponents: MDXComponents = {
   ol: 'ol',
   p: 'p',
   pre: 'pre',
+  span: 'span',
   strong: 'strong',
   ul: 'ul',
 }

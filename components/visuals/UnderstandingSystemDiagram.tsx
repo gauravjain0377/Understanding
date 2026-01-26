@@ -46,7 +46,7 @@ export default function UnderstandingSystemDiagram() {
     { id: 2, label: 'DOMAINS', x: 600, y: 150 },
     { id: 3, label: 'VISUALS', x: 150, y: 350 },
     { id: 4, label: 'SYSTEMS', x: 650, y: 350 },
-    { id: 5, label: 'MENTAL MODELS', x: 100, y: 250 },
+    { id: 5, label: 'MENTAL MODELS', x: 100, y: 250, radius: 60 },
     { id: 6, label: 'EXPLORATION', x: 700, y: 250 },
     { id: 7, label: 'CLARITY', x: 400, y: 100 },
   ]
@@ -132,6 +132,7 @@ export default function UnderstandingSystemDiagram() {
           {nodes.map((node) => {
             const isActive = activeNodes.has(node.id)
             const isCentral = node.isCentral
+            const radius = (node as any).radius || (isCentral ? 70 : 50)
             
             return (
               <g key={node.id}>
@@ -139,7 +140,7 @@ export default function UnderstandingSystemDiagram() {
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r={isCentral ? 70 : 50}
+                  r={radius}
                   fill={isActive ? (isCentral ? '#4A7C8F' : 'rgba(74, 124, 143, 0.1)') : 'rgba(232, 232, 230, 0.3)'}
                   stroke={isActive ? '#4A7C8F' : 'rgba(232, 232, 230, 0.5)'}
                   strokeWidth={isActive ? 2.5 : 1.5}
