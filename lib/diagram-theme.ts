@@ -99,3 +99,19 @@ export const getBorderColor = (
   if (isPast) return getInkColor(OPACITY.past)
   return TEXT_COLORS.border // Future borders should be dark and visible
 }
+
+// Helper to get text color for elements on colored backgrounds (boxes, circles, etc.)
+// Returns white when active (on colored bg), dark when inactive/past (on light bg)
+export const getTextColorForShape = (
+  isActive: boolean,
+  isPast: boolean,
+  hasColoredBackground: boolean = false
+): string => {
+  // If the shape has a colored background when active, use white text
+  // Otherwise, always use dark text for visibility
+  if (hasColoredBackground && isActive) {
+    return '#FFFFFF'
+  }
+  // When past or inactive, background is light, so text must be dark
+  return TEXT_COLORS.primary
+}

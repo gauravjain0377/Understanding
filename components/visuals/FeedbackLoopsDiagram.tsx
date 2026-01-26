@@ -9,8 +9,8 @@ export default function FeedbackLoopsDiagram() {
       label: 'User Action',
       render: (isActive) => (
         <svg width="100%" height="100%" viewBox="0 0 900 500" className="overflow-visible">
-          <circle cx="200" cy="250" r="60" fill={isActive ? '#5B8FA3' : '#E5E5E5'} className="transition-all duration-500" />
-          <text x="200" y="260" textAnchor="middle" fontSize="14" fill={isActive ? '#1A1A1A' : '#4A4A4A'} fontWeight="600" className="font-ui">Action</text>
+          <circle cx="200" cy="250" r="60" fill={isActive ? '#5B8FA3' : '#FAFAF9'} stroke={isActive ? '#5B8FA3' : '#1A1A1A'} strokeWidth="2" className="transition-all duration-500" />
+          <text x="200" y="260" textAnchor="middle" fontSize="14" fill={isActive ? '#FFFFFF' : '#1A1A1A'} fontWeight="600" className="font-ui">Action</text>
         </svg>
       ),
     },
@@ -19,13 +19,13 @@ export default function FeedbackLoopsDiagram() {
       label: 'System Feedback',
       render: (isActive, isPast) => (
         <svg width="100%" height="100%" viewBox="0 0 900 500" className="overflow-visible">
-          <g opacity={isPast ? 0.6 : 1}>
-            <circle cx="200" cy="250" r="60" fill="#5B8FA3" />
+          <g opacity={isPast ? 0.8 : 1}>
+            <circle cx="200" cy="250" r="60" fill="#FAFAF9" stroke="#1A1A1A" strokeWidth="2" />
             <text x="200" y="260" textAnchor="middle" fontSize="14" fill="#1A1A1A" fontWeight="600" className="font-ui">Action</text>
           </g>
           <path d="M 280 250 L 400 250" stroke="#5B8FA3" strokeWidth="3" markerEnd="url(#arrow-feedback)" />
-          <circle cx="500" cy="250" r="60" fill={isActive ? '#5B8FA3' : '#E5E5E5'} className="transition-all duration-500" />
-          <text x="500" y="260" textAnchor="middle" fontSize="14" fill={isActive ? '#1A1A1A' : '#4A4A4A'} fontWeight="600" className="font-ui">Feedback</text>
+          <circle cx="500" cy="250" r="60" fill={isActive ? '#5B8FA3' : '#FAFAF9'} stroke={isActive ? '#5B8FA3' : '#1A1A1A'} strokeWidth="2" className="transition-all duration-500" />
+          <text x="500" y="260" textAnchor="middle" fontSize="14" fill={isActive ? '#FFFFFF' : '#1A1A1A'} fontWeight="600" className="font-ui">Feedback</text>
         </svg>
       ),
     },
