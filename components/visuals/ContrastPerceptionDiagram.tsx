@@ -45,7 +45,6 @@ export default function ContrastPerceptionDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1500}
       size="primary"
       diagramId="contrast-perception"

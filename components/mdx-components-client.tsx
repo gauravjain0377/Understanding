@@ -1,5 +1,4 @@
-'use client'
-
+import React from 'react'
 import type { MDXComponents } from 'mdx/types'
 import InputFlowDiagram from './visuals/InputFlowDiagram'
 import StateLayersDiagram from './visuals/StateLayersDiagram'
@@ -42,7 +41,6 @@ import FramesDiagram from './visuals/FramesDiagram'
 import RegularExpressionsDiagram from './visuals/RegularExpressionsDiagram'
 import ColorModelsDiagram from './visuals/ColorModelsDiagram'
 
-
 const defaultMdxComponents: MDXComponents = {
   a: 'a',
   blockquote: 'blockquote',
@@ -67,17 +65,8 @@ const defaultMdxComponents: MDXComponents = {
   ul: 'ul',
 }
 
-export const mdxComponents: MDXComponents = {
-  ...defaultMdxComponents,
-  h2: ({ children, ...props }) => (
-    <h2 className="progressive-reveal-target" {...props}>{children}</h2>
-  ),
-  h3: ({ children, ...props }) => (
-    <h3 className="progressive-reveal-target" {...props}>{children}</h3>
-  ),
-  p: ({ children, ...props }) => (
-    <p className="progressive-reveal-target" {...props}>{children}</p>
-  ),
+// Create components object with validation
+const components = {
   InputFlowDiagram,
   StateLayersDiagram,
   AsyncTimelineDiagram,
@@ -118,4 +107,30 @@ export const mdxComponents: MDXComponents = {
   PrimaryVisual,
   SecondaryVisual,
   ClosingInsight,
+}
+
+// Validate all components are defined
+const undefinedComponents = Object.entries(components)
+  .filter(([_, component]) => !component)
+  .map(([name]) => name)
+
+if (undefinedComponents.length > 0) {
+  throw new Error(
+    `The following MDX components are undefined: ${undefinedComponents.join(', ')}. ` +
+    `Check if they are properly exported from their respective files.`
+  )
+}
+
+export const mdxComponents: MDXComponents = {
+  ...defaultMdxComponents,
+  h2: ({ children, ...props }: any) => (
+    <h2 className="progressive-reveal-target" {...props}>{children}</h2>
+  ),
+  h3: ({ children, ...props }: any) => (
+    <h3 className="progressive-reveal-target" {...props}>{children}</h3>
+  ),
+  p: ({ children, ...props }: any) => (
+    <p className="progressive-reveal-target" {...props}>{children}</p>
+  ),
+  ...components,
 }

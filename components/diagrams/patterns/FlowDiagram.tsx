@@ -153,7 +153,6 @@ export default function FlowDiagram({
   return (
     <AnimatedDiagram
       steps={diagramSteps}
-      autoPlay={autoPlay}
       stepDuration={stepDuration}
       size={size}
       className={className}

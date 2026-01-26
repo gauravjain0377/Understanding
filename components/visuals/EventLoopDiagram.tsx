@@ -70,7 +70,6 @@ export default function EventLoopDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1200}
       size="primary"
       diagramId="event-loop"

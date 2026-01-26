@@ -178,7 +178,6 @@ export default function ScreenFlowDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1200}
       size="primary"
       diagramId="screen-flow"

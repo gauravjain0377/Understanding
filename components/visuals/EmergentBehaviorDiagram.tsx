@@ -64,7 +64,6 @@ export default function EmergentBehaviorDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={2000}
       size="primary"
       diagramId="emergent-behavior"

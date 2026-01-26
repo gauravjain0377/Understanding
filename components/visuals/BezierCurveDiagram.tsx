@@ -47,7 +47,6 @@ export default function BezierCurveDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1500}
       size="primary"
       diagramId="bezier-curve"

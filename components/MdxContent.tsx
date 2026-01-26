@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { MDXRemote } from 'next-mdx-remote'
-import { mdxComponents } from './mdx-components'
+import { mdxComponents } from './mdx-components-client'
 
 interface MdxContentProps {
   source: MDXRemoteSerializeResult

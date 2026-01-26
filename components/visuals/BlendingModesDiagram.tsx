@@ -41,7 +41,6 @@ export default function BlendingModesDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1500}
       size="primary"
       diagramId="blending-modes"

@@ -69,7 +69,6 @@ export default function GpuModelDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1500}
       size="primary"
       diagramId="gpu-model"

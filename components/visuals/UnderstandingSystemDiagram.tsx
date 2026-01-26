@@ -1,99 +1,55 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { DIAGRAM_INK, DIAGRAM_BACKGROUND, LINE_WEIGHTS, OPACITY, getInkColor } from '@/lib/diagram-theme'
+import { useEffect, useState } from 'react'
+import { DIAGRAM_BACKGROUND, LINE_WEIGHTS, OPACITY, getInkColor } from '@/lib/diagram-theme'
+
+const ORBIT_DURATION_MS = 28000 // one full clockwise orbit (like Earth around Sun)
+const CENTER_X = 750
+const CENTER_Y = 550
+const ORBIT_RADIUS = 420 // increased to create gap between orbiting circles
+const UNDERSTANDING_RADIUS = 200 // larger central circle to fit text
+const NODE_RADIUS = 150
+const VIEWBOX_WIDTH = 1500
+const VIEWBOX_HEIGHT = 1100
+
+const ORBITING_CONCEPTS = [
+  'CLARITY',
+  'DOMAINS',
+  'VISUALS',
+  'SYSTEMS',
+  'MENTAL MODELS',
+  'EXPLORATION',
+]
 
 export default function UnderstandingSystemDiagram() {
   const [mounted, setMounted] = useState(false)
-  const [activeNodes, setActiveNodes] = useState<Set<number>>(new Set())
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [angle, setAngle] = useState(0)
 
   useEffect(() => {
     setMounted(true)
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Animate nodes appearing one by one with calm timing
-            let nodeIndex = 0
-            const interval = setInterval(() => {
-              setActiveNodes(prev => new Set([...prev, nodeIndex]))
-              nodeIndex++
-              if (nodeIndex >= 8) {
-                clearInterval(interval)
-              }
-            }, 400) // Slower, calmer animation
-            
-            observer.unobserve(entry.target)
-            return () => clearInterval(interval)
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => observer.disconnect()
   }, [])
 
-  // Central node position
-  const centerX = 400
-  const centerY = 250
-  const radius = 180 // Distance from center to surrounding nodes
-  
-  // Calculate evenly spaced positions around the circle
-  // 7 nodes around the center, evenly distributed
-  const surroundingNodes = [
-    { id: 1, label: 'CONCEPTS' },
-    { id: 2, label: 'DOMAINS' },
-    { id: 3, label: 'VISUALS' },
-    { id: 4, label: 'SYSTEMS' },
-    { id: 5, label: 'MENTAL MODELS' },
-    { id: 6, label: 'EXPLORATION' },
-    { id: 7, label: 'CLARITY' },
-  ]
-  
-  // Calculate positions evenly spaced around circle
-  const nodes = [
-    { id: 0, label: 'UNDERSTANDING', x: centerX, y: centerY, isCentral: true },
-    ...surroundingNodes.map((node, index) => {
-      // Start from top (12 o'clock) and distribute evenly
-      // Offset by -90 degrees to start from top
-      const angle = (index * (2 * Math.PI) / surroundingNodes.length) - (Math.PI / 2)
-      const x = centerX + radius * Math.cos(angle)
-      const y = centerY + radius * Math.sin(angle)
-      return {
-        ...node,
-        x: Math.round(x),
-        y: Math.round(y),
-        radius: node.label === 'MENTAL MODELS' ? 60 : undefined, // Larger radius for longer text
-      }
-    }),
-  ]
-
-  const connections = [
-    { from: 0, to: 1 },
-    { from: 0, to: 2 },
-    { from: 0, to: 3 },
-    { from: 0, to: 4 },
-    { from: 0, to: 5 },
-    { from: 0, to: 6 },
-    { from: 0, to: 7 },
-  ]
+  useEffect(() => {
+    let rafId: number
+    let start = performance.now()
+    const advance = (now: number) => {
+      const elapsed = now - start
+      const turns = (elapsed / ORBIT_DURATION_MS) * 2 * Math.PI
+      setAngle(turns)
+      rafId = requestAnimationFrame(advance)
+    }
+    rafId = requestAnimationFrame(advance)
+    return () => cancelAnimationFrame(rafId)
+  }, [])
 
   return (
     <div 
-      ref={containerRef}
-      className="w-full technical-grid py-16 md:py-20 relative"
-      style={{ minHeight: '80vh', maxHeight: '90vh' }}
+      className="w-full technical-grid py-12 md:py-16 relative"
+      style={{ minHeight: '100vh' }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         {/* Diagram label */}
-        <div className="mb-8 md:mb-10 text-center">
+        <div className="mb-6 md:mb-8 text-center">
           <span className="font-technical text-sm md:text-base uppercase tracking-wider text-text-secondary/60">
             FIG_001
           </span>
@@ -106,110 +62,112 @@ export default function UnderstandingSystemDiagram() {
         </div>
         
         <svg 
-          viewBox="0 0 800 500" 
-          className="w-full h-auto"
-          style={{ minHeight: '60vh', maxHeight: '70vh' }}
+          viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
+          className="w-full block"
+          style={{ height: '85vh', minHeight: '600px', width: '100%' }}
           preserveAspectRatio="xMidYMid meet"
         >
-          <defs>
-            <marker
-              id="arrow-understanding"
-              markerWidth="8"
-              markerHeight="8"
-              refX="7"
-              refY="4"
-              orient="auto"
+          {/* Central UNDERSTANDING node (fixed) */}
+          <g opacity={mounted ? 1 : 0} style={{ transition: 'opacity 600ms ease-out' }}>
+            <circle
+              cx={CENTER_X}
+              cy={CENTER_Y}
+              r={UNDERSTANDING_RADIUS}
+              fill={getInkColor(OPACITY.active)}
+              stroke={getInkColor(OPACITY.active)}
+              strokeWidth={LINE_WEIGHTS.primary}
+            />
+            <text
+              x={CENTER_X}
+              y={CENTER_Y}
+              dy={6}
+              textAnchor="middle"
+              fontSize={38}
+              fill={DIAGRAM_BACKGROUND}
+              fontFamily="var(--font-technical)"
+              fontWeight={600}
+              letterSpacing="0.05em"
             >
-              <path
-                d="M 0 0 L 8 4 L 0 8"
-                fill={getInkColor(OPACITY.past)}
-              />
-            </marker>
-          </defs>
+              UNDERSTANDING
+            </text>
+          </g>
 
-          {/* Connections */}
-          {connections.map((conn, idx) => {
-            const fromNode = nodes[conn.from]
-            const toNode = nodes[conn.to]
-            const isActive = activeNodes.has(conn.from) && activeNodes.has(conn.to)
-            
-            return (
-              <line
-                key={idx}
-                x1={fromNode.x}
-                y1={fromNode.y}
-                x2={toNode.x}
-                y2={toNode.y}
-                stroke={isActive ? getInkColor(OPACITY.active) : getInkColor(OPACITY.future)}
-                strokeWidth={isActive ? LINE_WEIGHTS.secondary : LINE_WEIGHTS.guide}
-                markerEnd="url(#arrow-understanding)"
-                style={{
-                  transition: `stroke ${700}ms ease-out`,
-                  transitionDelay: `${idx * 100}ms`,
-                }}
-              />
-            )
-          })}
-
-          {/* Nodes */}
-          {nodes.map((node) => {
-            const isActive = activeNodes.has(node.id)
-            const isCentral = node.isCentral
-            const radius = (node as any).radius || (isCentral ? 70 : 50)
-            
-            // Use single ink color with opacity variations
-            const fillColor = isActive 
-              ? (isCentral ? getInkColor(OPACITY.active) : getInkColor(0.1))
-              : getInkColor(0.05)
-            const strokeColor = isActive 
-              ? getInkColor(OPACITY.active) 
-              : getInkColor(OPACITY.future)
-            const textColor = isActive 
-              ? (isCentral ? DIAGRAM_BACKGROUND : getInkColor(OPACITY.active))
-              : getInkColor(OPACITY.future)
-            
-            return (
-              <g key={node.id}>
-                {/* Node circle */}
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={radius}
-                  fill={fillColor}
-                  stroke={strokeColor}
-                  strokeWidth={isActive ? LINE_WEIGHTS.primary : LINE_WEIGHTS.secondary}
-                  style={{
-                    opacity: mounted ? 1 : 0,
-                    transition: `fill ${700}ms ease-out, stroke ${700}ms ease-out`,
-                    transform: `scale(${isActive ? 1 : 0.9})`,
-                    transformOrigin: `${node.x}px ${node.y}px`,
-                  }}
-                />
+          {/* Orbiting concepts — constant clockwise revolution (Earth around Sun) */}
+          <g transform={`translate(${CENTER_X}, ${CENTER_Y})`}>
+            <g
+              transform={`rotate(${angle * (180 / Math.PI)})`}
+              style={{ opacity: mounted ? 1 : 0, transition: 'opacity 600ms ease-out' }}
+            >
+              {ORBITING_CONCEPTS.map((label, index) => {
+                const nodeAngle = (index * (2 * Math.PI) / ORBITING_CONCEPTS.length) - Math.PI / 2
+                const x = ORBIT_RADIUS * Math.cos(nodeAngle)
+                const y = ORBIT_RADIUS * Math.sin(nodeAngle)
+                const r = NODE_RADIUS // All circles same size now
+                const isTwoWords = label.includes(' ')
+                const [firstWord, secondWord] = isTwoWords ? label.split(' ') : [label, '']
                 
-                {/* Node label */}
-                <text
-                  x={node.x}
-                  y={node.y + (isCentral ? 0 : 6)}
-                  textAnchor="middle"
-                  fontSize={isCentral ? 16 : 13}
-                  fill={textColor}
-                  fontFamily="var(--font-technical)"
-                  fontWeight={isCentral ? 600 : 500}
-                  letterSpacing="0.1em"
-                  textTransform="uppercase"
-                  style={{
-                    opacity: mounted ? 1 : 0,
-                    transition: `fill ${700}ms ease-out`,
-                  }}
-                >
-                  {node.label}
-                </text>
-              </g>
-            )
-          })}
+                return (
+                  <g key={label} transform={`translate(${x}, ${y})`}>
+                    <circle
+                      cx={0}
+                      cy={0}
+                      r={r}
+                      fill={getInkColor(0.1)}
+                      stroke={getInkColor(OPACITY.active)}
+                      strokeWidth={LINE_WEIGHTS.secondary}
+                    />
+                    {isTwoWords ? (
+                      <>
+                        <text
+                          x={0}
+                          y={0}
+                          dy={-14}
+                          textAnchor="middle"
+                          fontSize={36}
+                          fill={getInkColor(OPACITY.active)}
+                          fontFamily="var(--font-technical)"
+                          fontWeight={500}
+                          letterSpacing="0.08em"
+                        >
+                          {firstWord}
+                        </text>
+                        <text
+                          x={0}
+                          y={0}
+                          dy={26}
+                          textAnchor="middle"
+                          fontSize={36}
+                          fill={getInkColor(OPACITY.active)}
+                          fontFamily="var(--font-technical)"
+                          fontWeight={500}
+                          letterSpacing="0.08em"
+                        >
+                          {secondWord}
+                        </text>
+                      </>
+                    ) : (
+                      <text
+                        x={0}
+                        y={0}
+                        dy={8}
+                        textAnchor="middle"
+                        fontSize={36}
+                        fill={getInkColor(OPACITY.active)}
+                        fontFamily="var(--font-technical)"
+                        fontWeight={500}
+                        letterSpacing="0.08em"
+                      >
+                        {label}
+                      </text>
+                    )}
+                  </g>
+                )
+              })}
+            </g>
+          </g>
         </svg>
 
-        <div className="mt-8 md:mt-10 text-center">
+        <div className="mt-6 md:mt-8 text-center">
           <p className="font-reading text-lg md:text-xl text-text-secondary/80 max-w-3xl mx-auto leading-relaxed">
             Understanding emerges from the connections between concepts, domains, and mental models. 
             Each element informs the others, creating a system of knowledge.

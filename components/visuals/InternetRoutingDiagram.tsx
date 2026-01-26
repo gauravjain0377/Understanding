@@ -94,7 +94,6 @@ export default function InternetRoutingDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1200}
       size="primary"
       diagramId="internet-routing"

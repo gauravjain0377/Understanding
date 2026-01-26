@@ -62,7 +62,6 @@ export default function NeuralNetworkDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1500}
       size="primary"
       diagramId="neural-network"

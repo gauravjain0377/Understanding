@@ -55,7 +55,6 @@ export default function ColorModelsDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={2000}
       size="primary"
       diagramId="color-models"

@@ -4,13 +4,28 @@ import { getAllDomains } from '@/lib/domains'
 import { serializeMdx } from '@/lib/mdx'
 import ConceptConnections from '@/components/ConceptConnections'
 import ProgressiveReveal from '@/components/ProgressiveReveal'
-import MdxContent from '@/components/MdxContent'
+import dynamic from 'next/dynamic'
 import ConceptPageLayout from '@/components/ConceptPageLayout'
 import SidebarNavigation from '@/components/SidebarNavigation'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import matter from 'gray-matter'
+
+// Dynamically import MdxContent with no SSR to prevent evaluation during static generation
+// This ensures client components are only loaded on the client side
+const MdxContent = dynamic(() => import('@/components/MdxContent'), {
+  ssr: false,
+  loading: () => (
+    <div className="prose prose-lg max-w-[65ch]">
+      <div className="animate-pulse space-y-4">
+        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <div className="h-4 bg-gray-200 rounded"></div>
+        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+      </div>
+    </div>
+  ),
+})
 
 interface ConceptPageProps {
   params: {

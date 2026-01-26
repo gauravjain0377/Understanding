@@ -179,7 +179,6 @@ export default function SystemDiagram({
   return (
     <AnimatedDiagram
       steps={diagramSteps}
-      autoPlay={autoPlay}
       stepDuration={stepDuration}
       size={size}
       className={className}

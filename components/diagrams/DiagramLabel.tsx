@@ -49,7 +49,6 @@ export default function DiagramLabel({
       fontFamily={TYPOGRAPHY.fontFamily}
       fontWeight={TYPOGRAPHY.fontWeight.medium}
       letterSpacing={`${TYPOGRAPHY.letterSpacing}em`}
-      textTransform="uppercase"
       className={`diagram-label diagram-label-${size} ${className}`}
     >
       {text.toUpperCase()}

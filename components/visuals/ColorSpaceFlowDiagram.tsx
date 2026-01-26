@@ -66,7 +66,6 @@ export default function ColorSpaceFlowDiagram() {
   return (
     <AnimatedDiagram
       steps={steps}
-      autoPlay={true}
       stepDuration={1200}
       size="primary"
       diagramId="color-space-flow"
