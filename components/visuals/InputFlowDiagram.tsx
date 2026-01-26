@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import ConceptDiagram from './ConceptDiagram'
+import ProgressiveReveal from '../ProgressiveReveal'
 
 export default function InputFlowDiagram() {
   const [highlightedStep, setHighlightedStep] = useState<number | null>(null)
@@ -37,96 +37,105 @@ export default function InputFlowDiagram() {
   }, [])
 
   const steps = [
-    { id: 1, label: 'Physical Action', x: 80, y: 100, color: '#5B8FA3' },
-    { id: 2, label: 'Hardware Signal', x: 280, y: 100, color: '#8FA3B0' },
-    { id: 3, label: 'OS Event', x: 480, y: 100, color: '#A3B0C0' },
-    { id: 4, label: 'Application', x: 680, y: 100, color: '#B0C0D0' },
+    { id: 1, label: 'Physical Action', x: 200, y: 200, color: '#5B8FA3' },
+    { id: 2, label: 'Hardware Signal', x: 800, y: 200, color: '#8FA3B0' },
+    { id: 3, label: 'OS Event', x: 1400, y: 200, color: '#A3B0C0' },
+    { id: 4, label: 'Application', x: 2000, y: 200, color: '#B0C0D0' },
   ]
 
   return (
-    <ConceptDiagram caption="The journey from physical action to application understanding">
-      <div ref={containerRef} className="relative" style={{ height: '300px' }}>
-        <svg width="100%" height="100%" viewBox="0 0 900 300" className="overflow-visible" preserveAspectRatio="xMidYMid meet">
-          {/* Arrows */}
-          {steps.slice(0, -1).map((step, index) => (
-            <line
-              key={`arrow-${index}`}
-              x1={step.x + 140}
-              y1={step.y + 40}
-              x2={steps[index + 1].x - 20}
-              y2={steps[index + 1].y + 40}
-              stroke={highlightedStep !== null && highlightedStep >= index ? '#5B8FA3' : '#E5E5E5'}
-              strokeWidth="3"
-              markerEnd="url(#arrowhead)"
-              className="transition-colors duration-700"
-            />
-          ))}
-          
-          {/* Arrow marker */}
-          <defs>
-            <marker
-              id="arrowhead"
-              markerWidth="12"
-              markerHeight="12"
-              refX="11"
-              refY="4"
-              orient="auto"
-            >
-              <polygon
-                points="0 0, 12 4, 0 8"
-                fill={highlightedStep !== null ? '#5B8FA3' : '#E5E5E5'}
-                className="transition-colors duration-700"
-              />
-            </marker>
-          </defs>
+    <div className="my-12 md:my-16 -mx-6 md:-mx-12 lg:-mx-24 xl:-mx-32 w-[calc(100%+3rem)] md:w-[calc(100%+6rem)] lg:!w-[calc(100vw-256px-500px)] xl:!w-[calc(100vw-256px-500px)] lg:!max-w-[calc(100vw-256px-500px)] xl:!max-w-[calc(100vw-256px-500px)]" data-diagram-section="true">
+      <ProgressiveReveal>
+        <figure className="w-full">
+          <div className="bg-gradient-to-br from-background via-subtle/20 to-background border border-border/60 p-8 md:p-12 lg:p-16 rounded-sm w-full shadow-sm">
+            <div ref={containerRef} className="relative w-full" style={{ height: '700px' }}>
+              <svg width="100%" height="100%" viewBox="0 0 2800 700" className="overflow-visible" preserveAspectRatio="xMidYMid meet">
+                {/* Arrows */}
+                {steps.slice(0, -1).map((step, index) => (
+                  <line
+                    key={`arrow-${index}`}
+                    x1={step.x + 500}
+                    y1={step.y + 100}
+                    x2={steps[index + 1].x - 40}
+                    y2={steps[index + 1].y + 100}
+                    stroke={highlightedStep !== null && highlightedStep >= index ? '#5B8FA3' : '#E5E5E5'}
+                    strokeWidth="8"
+                    markerEnd="url(#arrowhead)"
+                    className="transition-colors duration-700"
+                  />
+                ))}
+                
+                {/* Arrow marker */}
+                <defs>
+                  <marker
+                    id="arrowhead"
+                    markerWidth="30"
+                    markerHeight="30"
+                    refX="27"
+                    refY="10"
+                    orient="auto"
+                  >
+                    <polygon
+                      points="0 0, 30 10, 0 20"
+                      fill={highlightedStep !== null ? '#5B8FA3' : '#E5E5E5'}
+                      className="transition-colors duration-700"
+                    />
+                  </marker>
+                </defs>
 
-          {/* Step boxes */}
-          {steps.map((step) => {
-            const isHighlighted = highlightedStep !== null && highlightedStep >= step.id - 1
-            return (
-              <g key={step.id}>
-                <rect
-                  x={step.x}
-                  y={step.y}
-                  width="160"
-                  height="80"
-                  rx="8"
-                  fill={isHighlighted ? step.color : '#FAFAF9'}
-                  stroke={isHighlighted ? step.color : '#E5E5E5'}
-                  strokeWidth={isHighlighted ? '3' : '2'}
-                  className="transition-all duration-700"
-                  opacity={isHighlighted ? 1 : 0.6}
-                />
-                <text
-                  x={step.x + 80}
-                  y={step.y + 48}
-                  textAnchor="middle"
-                  fontSize="18"
-                  fill={isHighlighted ? '#1A1A1A' : '#4A4A4A'}
-                  fontWeight={isHighlighted ? '600' : '400'}
-                  className="font-ui transition-all duration-700"
-                >
-                  {step.label}
+                {/* Step boxes */}
+                {steps.map((step) => {
+                  const isHighlighted = highlightedStep !== null && highlightedStep >= step.id - 1
+                  return (
+                    <g key={step.id}>
+                      <rect
+                        x={step.x}
+                        y={step.y}
+                        width="500"
+                        height="200"
+                        rx="20"
+                        fill={isHighlighted ? step.color : '#FAFAF9'}
+                        stroke={isHighlighted ? step.color : '#E5E5E5'}
+                        strokeWidth={isHighlighted ? '8' : '5'}
+                        className="transition-all duration-700"
+                        opacity={isHighlighted ? 1 : 0.6}
+                      />
+                      <text
+                        x={step.x + 250}
+                        y={step.y + 120}
+                        textAnchor="middle"
+                        fontSize="56"
+                        fill={isHighlighted ? '#1A1A1A' : '#4A4A4A'}
+                        fontWeight={isHighlighted ? '600' : '400'}
+                        className="font-ui transition-all duration-700"
+                      >
+                        {step.label}
+                      </text>
+                    </g>
+                  )
+                })}
+
+                {/* Labels */}
+                <text x="200" y="480" fontSize="40" fill="#4A4A4A" className="font-ui">
+                  Your finger
                 </text>
-              </g>
-            )
-          })}
-
-          {/* Labels */}
-          <text x="80" y="200" fontSize="14" fill="#4A4A4A" className="font-ui">
-            Your finger
-          </text>
-          <text x="280" y="200" fontSize="14" fill="#4A4A4A" className="font-ui">
-            Electrical signal
-          </text>
-          <text x="480" y="200" fontSize="14" fill="#4A4A4A" className="font-ui">
-            Structured event
-          </text>
-          <text x="680" y="200" fontSize="14" fill="#4A4A4A" className="font-ui">
-            Meaning
-          </text>
-        </svg>
-      </div>
-    </ConceptDiagram>
+                <text x="800" y="480" fontSize="40" fill="#4A4A4A" className="font-ui">
+                  Electrical signal
+                </text>
+                <text x="1400" y="480" fontSize="40" fill="#4A4A4A" className="font-ui">
+                  Structured event
+                </text>
+                <text x="2000" y="480" fontSize="40" fill="#4A4A4A" className="font-ui">
+                  Meaning
+                </text>
+              </svg>
+            </div>
+          </div>
+          <figcaption className="mt-10 md:mt-12 text-sm md:text-base text-text-secondary/80 font-reading text-center italic max-w-4xl mx-auto leading-relaxed px-4">
+            The journey from physical action to application understanding
+          </figcaption>
+        </figure>
+      </ProgressiveReveal>
+    </div>
   )
 }

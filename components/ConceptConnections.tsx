@@ -18,8 +18,25 @@ export default function ConceptConnections({ relatedConcepts, currentSlug }: Con
       const windowHeight = window.innerHeight
       const documentHeight = document.documentElement.scrollHeight
       
-      // Show after scrolling 20% of the page
-      if (scrollPosition > windowHeight * 0.2 && scrollPosition < documentHeight - windowHeight * 0.8) {
+      // Check if we're near a diagram section
+      const diagramSections = document.querySelectorAll('[data-diagram-section="true"]')
+      let isNearDiagram = false
+      
+      diagramSections.forEach((section) => {
+        const rect = section.getBoundingClientRect()
+        const sectionTop = rect.top + scrollPosition
+        const sectionBottom = sectionTop + rect.height
+        const viewportTop = scrollPosition
+        const viewportBottom = scrollPosition + windowHeight
+        
+        // Hide if diagram is in viewport (with some buffer)
+        if (sectionTop < viewportBottom + 200 && sectionBottom > viewportTop - 200) {
+          isNearDiagram = true
+        }
+      })
+      
+      // Show after scrolling 20% of the page, but hide when near diagrams
+      if (!isNearDiagram && scrollPosition > windowHeight * 0.2 && scrollPosition < documentHeight - windowHeight * 0.8) {
         setIsVisible(true)
       } else {
         setIsVisible(false)
@@ -27,15 +44,20 @@ export default function ConceptConnections({ relatedConcepts, currentSlug }: Con
     }
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleScroll)
+    handleScroll() // Check on mount
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   if (relatedConcepts.length === 0) return null
 
   return (
     <aside
-      className={`hidden lg:block fixed right-8 md:right-20 lg:right-32 top-44 md:top-48 z-30 transition-opacity duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      className={`hidden lg:block fixed right-8 md:right-20 lg:right-32 top-44 md:top-48 z-30 transition-all duration-500 ${
+        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'
       }`}
     >
       <div className="bg-background/90 backdrop-blur-sm border border-border p-6 rounded-sm max-w-xs">
