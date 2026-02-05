@@ -199,7 +199,3 @@ For new concepts, follow the structure in [Adding New Concepts](#adding-new-conc
 
 ---
 
-## License
-
-Private project. All rights reserved.
-
